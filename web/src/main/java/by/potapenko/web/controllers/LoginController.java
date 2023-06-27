@@ -34,7 +34,6 @@ public class LoginController {
             return LOGIN;
         } else {
             model.addAttribute("user", modelMapper.map(user, UserDto.class));
-            ;
             return "redirect:/catalog";
         }
     }

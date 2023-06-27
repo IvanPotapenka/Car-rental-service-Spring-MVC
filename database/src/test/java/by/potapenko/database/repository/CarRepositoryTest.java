@@ -112,7 +112,7 @@ class CarRepositoryTest {
     void whenFindAllByFilterContainsOnlyBrandsAndModelCarsInvoked_ThenAllTheFilteredByBrandsCarsAreReturned() {
         CarFilter filter = CarFilter.builder()
                 .brand("Audy")
-                .mark("A8")
+                .model("A8")
                 .build();
         String[] actual = carRepository.findByFilter(filter)
                 .stream()

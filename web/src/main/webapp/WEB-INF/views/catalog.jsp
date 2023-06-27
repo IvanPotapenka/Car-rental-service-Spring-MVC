@@ -108,14 +108,14 @@
             <label for="model_id"></label>
             <select class="w3-round-large"
                     id="model_id"
-                    name="mark">
-                <option value="">--Model--</option>
-                <option value="Audy">A8</option>
-                <option value="BMW">X6</option>
-                <option value="Citroen">C5</option>
-                <option value="Ford">F1</option>
-                <option value="Renault">A6</option>
-                <option value="Hyundai">C8</option>
+                    name="model">
+                <option value= "">--Model--</option>
+                <option value="A8">A8</option>
+                <option value="X6">X6</option>
+                <option value="C5">C5</option>
+                <option value="F1">F1</option>
+                <option value="A6">A6</option>
+                <option value="C8">C8</option>
             </select><br>
 
             <label for="color_id"></label>
@@ -148,15 +148,6 @@
                 <option value="AUTOMATIC">Automatic</option>
                 <option value="MANUAL">Manual</option>
                 <option value="HYBRID">Hybrid</option>
-            </select><br>
-            <label for="consumption_id"></label>
-            <select class="w3-round-large"
-                    id="consumption_id"
-                    name="fuel_consumption">
-                <option value="">--Fuel consumption--</option>
-                <c:forEach var="i" items="${[6.4,6.5,6.6,6.7,6.8,6.9,7.0,7.1,7.2,7.3,7.5]}">
-                    <option value="${i}">${i}</option>
-                </c:forEach>
             </select><br>
             <button class="w3-btn w3-white w3-round-large" type="submit">Show</button>
             </br>

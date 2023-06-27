@@ -88,8 +88,8 @@
         <flex class="w3-border w3-round-large w3-padding" style="width: 100%">
             <p style="font-size: 16px">
             <h6>Filter</h6>
-                        <input hidden name="limit" value="${limit}"/>
-                        <input hidden name="page" value="${page}"/>
+<%--                        <input hidden name="limit" value="${limit}"/>--%>
+<%--                        <input hidden name="page" value="${page}"/>--%>
             <label for="brand_id"></label>
             <select class="w3-round-large"
                     id="brand_id"
@@ -106,14 +106,14 @@
             <label for="model_id"></label>
             <select class="w3-round-large"
                     id="model_id"
-                    name="mark">
-                <option value="">--Model--</option>
-                <option value="Audy">A8</option>
-                <option value="BMW">X6</option>
-                <option value="Citroen">C5</option>
-                <option value="Ford">F1</option>
-                <option value="Renault">A6</option>
-                <option value="Hyundai">C8</option>
+                    name="model">
+                <option value= "">--Model--</option>
+                <option value="A8">A8</option>
+                <option value="X6">X6</option>
+                <option value="C5">C5</option>
+                <option value="F1">F1</option>
+                <option value="A6">A6</option>
+                <option value="C8">C8</option>
             </select><br>
 
             <label for="color_id"></label>
@@ -148,15 +148,6 @@
                 <option value="MANUAL">Manual</option>
                 <option value="HYBRID">Hybrid</option>
             </select><br>
-            <label for="consumption_id"></label>
-            <select class="w3-round-large"
-                    id="consumption_id"
-                    name="fuelConsumption">
-                <option  value= "">--Fuel consumption--</option>
-                <c:forEach var="i" items="${[6.4,6.5,6.6,6.7,6.8,6.9,7.0,7.1,7.2,7.3,7.5]}">
-                    <option value="${i}">${i}</option>
-                </c:forEach>
-            </select><br>
             <button class="w3-btn w3-white w3-round-large" type="submit">Show</button>
             </br>
             <p style="font-size: 12px"><a href="${pageContext.request.contextPath}/catalog">clear</a></p>
@@ -169,7 +160,7 @@
     <c:forEach var="car" items="${cars}">
         <box class="w3-container ">
             <box class="w3-card-4 w3-round-large w3-padding" style="width: 50%"><br>
-                <h2><a href=${pageContext.request.contextPath}/catalog/car?id=${car.id}
+                <h2><a href=${pageContext.request.contextPath}/catalog/car/${car.id}
                        class="w3-text-blue"> ${car.brand} ${car.model} ${car.year}</a></h2>
                 <h6> &#9989; ${car.placeQuantity} places &#9989; ${car.transmission}
                     &#9989;${car.doorQuantity} doors &#9989; ${car.fuelType}

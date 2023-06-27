@@ -77,7 +77,7 @@
 <p class="w3-container w3-padding w3-margin"></p>
 <box>
     <box class="w3-card-4 w3-round-large w3-padding" style="width: 50%">
-        <h2><a href=${pageContext.request.contextPath}/catalog/car?id=${car.id}
+        <h2><a href=${pageContext.request.contextPath}/catalog/car/${car.id}
                class="w3-text-blue"> ${car.brand} ${car.model} ${car.year}</a></h2>
         <h6> &#9989; ${car.placeQuantity} places &#9989; ${car.transmission}
             &#9989;${car.doorQuantity} doors &#9989;${car.fuelType}</h6><br>

@@ -9,14 +9,14 @@ import lombok.Data;
 
 @Data
 @Builder
-@AllArgsConstructor
+//@AllArgsConstructor
 public class CarFilter {
     private String brand;
-    private String mark;
+    private String model;
     private ColorCar color;
     private FuelType fuelType;
     private TransmissionType transmission;
-    private Double fuelConsumption;
+
     private Integer limit;
     private Integer page;
 
