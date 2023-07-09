@@ -2,7 +2,7 @@
 <%@ page import="java.util.Optional" %>
 <%--
   Created by IntelliJ IDEA.
-  User: Professional
+  uzer: Professional
   Date: 12.04.2023
   Time: 0:48
   To change this template use File | Settings | File Templates.
@@ -17,7 +17,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Edit ${car.brand}</title>
+    <title>Edit ${uzer.fullName}</title>
     <style>
         box {
             display: flex;
@@ -52,25 +52,25 @@
 </head>
 <body>
 <div><a href="/admin">Home </a>
-    <a href="${pageContext.request.contextPath}/admin/users/user/update_user/${user.id}">/ edit user</a></div>
+    <a href="${pageContext.request.contextPath}/admin/users/user/update_user/${uzer.id}">/ edit user</a></div>
 <box>
     <form method="post" class="w3-card-4 w3-blue-grey w3-round-large w3-padding" style="width: 30%">
         <flex>
-            <h1>${user.login}</h1><br>
+            <h1>${uzer.fullName}</h1><br>
             <c:if test="${update_user == true}">
                 <p style="font-size: 20px" class="w3-text-green"> User update successfully!</p>
-                <p style="font-size: 16px"><a href="/admin/users/user/${user.id}">Back</a></p>
+                <p style="font-size: 16px"><a href="/admin/users/user/${uzer.id}">Back</a></p>
             </c:if><br>
             <c:if test="${update_user == null}">
 
-                <label for="loginId">Login</label>
+                <label for="fullNameId">Login</label>
                 <input class="w3-round-large"
                        type="text"
                        maxlength="20"
                        placeholder="Enter your login"
-                       name="login"
-                       value="${user.login}"
-                       id="loginId"
+                       name="fullNAme"
+                       value="${uzer.fullName}"
+                       id="fullNameId"
                        required/><br>
 
                 <label for="email">Email</label>
@@ -79,7 +79,7 @@
                        maxlength="20"
                        placeholder="Enter your email"
                        name="email"
-                       value="${user.email}"
+                       value="${uzer.email}"
                        id="email"
                        required/><br>
 
@@ -89,7 +89,7 @@
                        maxlength="13"
                        placeholder="Enter your phone"
                        name="phone"
-                       value="${user.phone}"
+                       value="${uzer.phone}"
                        id="phone"
                        required/><br>
 
@@ -97,7 +97,7 @@
                     <select class="w3-round-large"
                             id="role"
                             name="role">
-                        <option selected> ${user.role}</option>
+                        <option selected> ${uzer.role}</option>
                     </select><br>
 
                 <label for="date_of_creation_id">Date of creation</label>
@@ -105,18 +105,18 @@
                            type="text"
                            name="dateOfCreation"
                            id="date_of_creation_id"
-                           value="${user.dateOfCreation}"
+                           value="${uzer.dateOfCreation}"
                            readonly/><br>
 
                 <button class="w3-btn w3-white w3-round-large" type="submit">Update</button>
                 </br>
                 </br>
-                <p style="font-size: 16px"><a href="/admin/users/user/${user.id}">Back</a></p>
+                <p style="font-size: 16px"><a href="/admin/users/user/${uzer.id}">Back</a></p>
             </c:if>
             <c:if test="${update_user == false}">
                 <p style="font-size: 20px" class="w3-text-red"> User wasn't updated!Try again later!</p>
 
-                <p style="font-size: 16px"><a href="/admin/users/user/update_user/${user.id}">Back</a></p>
+                <p style="font-size: 16px"><a href="/admin/users/user/update_user/${uzer.id}">Back</a></p>
             </c:if><br>
         </flex>
     </form>

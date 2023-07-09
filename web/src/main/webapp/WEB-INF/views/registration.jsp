@@ -45,18 +45,19 @@
 
                 <c:if test="${create_user == null}">
             <h1>Registration</h1><br>
-            <label for="login_id">Login</label>
+            <label for="fullName">Full name</label>
             <input class="w3-round-large"
                    type="text"
-                   maxlength="20"
-                   placeholder="Enter your login"
-                   name="login"
-                   id="login_id"
-                   required/><br>
+                   maxlength="30"
+                   placeholder="Enter your full name"
+                   name="fullName"
+                   id="fullName"
+                   required/>
 
             <c:if test="${email_error == true}">
                 <p class="w3-text-red"> User with this email already exists!</p>
             </c:if>
+
             <label for="email">Email</label>
             <input class="w3-round-large"
                    type="email"
@@ -64,7 +65,7 @@
                    placeholder="Enter your email"
                    name="email"
                    id="email"
-                   required/><br>
+                   required/>
 
             <label for="phone_id">Phone</label>
             <input class="w3-round-large"
@@ -73,8 +74,10 @@
                    placeholder="Enter your phone"
                    name="phone"
                    id="phone_id"
-                   required/></p><br>
-
+                   required/></p>
+            <c:if test="${password_error == true}">
+                <p class="w3-text-red"> Passwords don't match </p>
+            </c:if>
             <label for="pwd">Password</label>
             <input class="w3-round-large"
                    maxlength="20"
@@ -82,7 +85,16 @@
                    placeholder="Enter your password"
                    name="password"
                    id="pwd"
-                   required/></p><br>
+                   required/>
+
+            <label for="pwd_check_id">Confirm password</label>
+            <input class="w3-round-large"
+                   maxlength="20"
+                   minlength="8"
+                   type="password"
+                   name="passwordCheck"
+                   id="pwd_check_id"
+                   required/><br>
             <button class="w3-btn w3-white w3-round-large" type="submit">Registration</button>
             </br>
             <p style="font-size: 12px">If you are already registered,</p>

@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Professional
+  uzer: Professional
   Date: 12.04.2023
   Time: 0:48
   To change this template use File | Settings | File Templates.
@@ -56,18 +56,18 @@
 </head>
 <body>
 <%@include file="headerAdmin.jsp" %>
-<div><a href="/admin">Home </a><a href="${pageContext.request.contextPath}/admin/users/user/${user.id}">/ edit</a>
+<div><a href="/admin">Home </a><a href="${pageContext.request.contextPath}/admin/users/user/${uzer.id}">/ edit</a>
 </div>
 <box>
     <form method="post" class="w3-card-4 w3-blue-grey w3-round-large w3-padding" style="width: 70%">
         <a style="font-size: 12px" href="${pageContext.request.contextPath}/admin/users/create_user">Create new user</a>
         <flex>
                 <p style="font-size: 16px">
-                <h1>${user.login}</h1>
+                <h1>${uzer.fullName}</h1>
                 <table>
                     <tr>
                         <th>User_id</th>
-                        <th>Login</th>
+                        <th>Full name</th>
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Role</th>
@@ -75,14 +75,14 @@
                         <th>Edit</th>
                     </tr>
                     <tr>
-                        <td>${user.id}</td>
-                        <td>${user.login}</td>
-                        <td>${user.email}</td>
-                        <td>${user.phone}</td>
-                        <td>${user.role}</td>
-                        <td><a href="${pageContext.request.contextPath}/admin/users/user/delete_user/${user.id}"
+                        <td>${uzer.id}</td>
+                        <td>${uzer.fullName}</td>
+                        <td>${uzer.email}</td>
+                        <td>${uzer.phone}</td>
+                        <td>${uzer.role}</td>
+                        <td><a href="${pageContext.request.contextPath}/admin/users/user/delete_user/${uzer.id}"
                                class="w3-text-red">DELETE</a></td>
-                        <td><a href="${pageContext.request.contextPath}/admin/users/user/update_user/${user.id}"
+                        <td><a href="${pageContext.request.contextPath}/admin/users/user/update_user/${uzer.id}"
                                class="w3-text-blue">EDIT</a></td>
                     </tr>
                 </table>

@@ -36,6 +36,7 @@
 
         box {
             display: flex;
+            justify-content: space-between;
             flex-direction: column;
             align-items: center;
             margin-top: 100px;
@@ -49,6 +50,7 @@
             margin-bottom: 1%;
         }
 
+
         flex {
             display: flex;
             flex-direction: column;
@@ -61,6 +63,7 @@
             padding-top: 80px;
             padding-left: 1%;
         }
+
 
         nav1 {
             position: fixed;
@@ -86,9 +89,12 @@
 </head>
 <body>
 <%@include file="header.jsp" %>
-<div><a href="/">Home </a><a href="${pageContext.request.contextPath}/catalog">/ catalog</a></div>
-</nav1>
-<nav1>
+<div><a href="/">Home </a><a href="${pageContext.request.contextPath}/catalog">/ catalog</a>
+    <h2 >Rent a car without a driver </h2>
+        <h6 >The company "CAR RENTAL SERVICE" provides services for renting a car without a driver for a day for any purpose. In our fleet there is a wide selection of passenger cars from budget to business class, as well as minibuses, motorcycles and motorhomes. By contacting us, you will always be able to find exactly the transport that will allow you to make tourist trips with convenience and comfort, meet friends or perform official duties.</h6>
+</div>
+    <nav1>
+    <box><br>
     <form action="/catalog/filter">
         <flex class="w3-border w3-round-large w3-padding" style="width: 100%">
             <h6>Filter</h6>
@@ -155,14 +161,18 @@
 
         </flex>
     </form>
-</nav1>
+    </box>
+    </nav1>
 <c:if test="${find_car_error==false}">
     <c:forEach var="car" items="${cars}">
 
-        <box class="w3-container ">
+    <box class="w3-container">
             <box class="w3-card-4 w3-round-large w3-padding" style="width: 50%"><br>
+
                 <h2><a href=${pageContext.request.contextPath}/catalog/car/${car.id}
                        class="w3-text-blue"> ${car.brand} ${car.model} ${car.year}</a></h2>
+                <a href=${pageContext.request.contextPath}/catalog/car/${car.id} >
+                    <figure class="mb-0"> <img src="${car.image}" alt="${car.brand} ${car.model}"></figure></a>
                 <h6> &#9989; ${car.placeQuantity} places &#9989; ${car.transmission}
                     &#9989;${car.doorQuantity} doors &#9989; ${car.fuelType}
                 </h6><br>
@@ -188,7 +198,8 @@
                 </button>
                 </br>
             </box>
-        </box>
+</box>
+</div>
     </c:forEach>
 </c:if>
 <c:if test="${find_car_error==true}">

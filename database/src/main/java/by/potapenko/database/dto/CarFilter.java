@@ -3,13 +3,11 @@ package by.potapenko.database.dto;
 import by.potapenko.database.entity.enam.ColorCar;
 import by.potapenko.database.entity.enam.FuelType;
 import by.potapenko.database.entity.enam.TransmissionType;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-//@AllArgsConstructor
 public class CarFilter {
     private String brand;
     private String model;

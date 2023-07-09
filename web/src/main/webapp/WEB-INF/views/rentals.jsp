@@ -77,13 +77,13 @@
                 <tr>
                     <th>Rental id</th>
                     <th>Car</th>
-                    <th>Client</th>
+                    <th>User</th>
                     <th>Rental date</th>
                     <th>Return date</th>
                     <th>Rental days</th>
                     <th>Price</th>
                     <th>Status</th>
-<%--                    <th>Creator rental</th>--%>
+                    <th>Creator</th>
                     <th>Date of creation</th>
                     <th>Edit</th>
                 </tr>
@@ -92,18 +92,18 @@
                         <td>${rental.id}</td>
                         <td><a href="${pageContext.request.contextPath}/admin/orders/car/${rental.carDto.id}" class="w3-text-blue">
                                 ID${rental.carDto.id}, ${rental.carDto.brand} ${rental.carDto.model}, No. ${rental.carDto.number}</a></td>
-                        <td><a href="${pageContext.request.contextPath}/admin/orders/client/${rental.clientDto.id}" class="w3-text-blue">
-                                ID${rental.clientDto.id}, ${rental.clientDto.firstName} ${rental.clientDto.lastName}</a></td>
+                        <td><a href="${pageContext.request.contextPath}/admin/orders/user/${rental.userDto.id}" class="w3-text-blue">
+                                ID${rental.userDto.id}, ${rental.userDto.fullName}</a></td>
                         <td>${rental.rentalDate}</td>
                         <td>${rental.returnDate}</td>
                         <td>${rental.rentalDays}</td>
                         <td>${rental.price}</td>
                         <td><p style="color: crimson"> ${rental.status}</p></td>
-<%--                        <td>${rental.client.role} </td>--%>
+                        <td>${rental.creator} </td>
                         <td>${rental.dateOfCreation}</td>
 
                         <td><a href="${pageContext.request.contextPath}/admin/rentals/rental/${rental.id}"
-                               class="w3-text-blue">EDIT</a></td>
+                               class="w3-text-blue">ACCEPT</a></td>
                     </tr>
                 </c:forEach>
             </table>

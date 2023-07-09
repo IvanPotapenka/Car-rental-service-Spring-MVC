@@ -77,7 +77,7 @@
             <table>
                 <tr>
                     <th>User_id</th>
-                    <th>Login</th>
+                    <th>Full name</th>
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Date of creation</th>
@@ -87,7 +87,7 @@
                 <c:forEach var="user" items="${users}">
                     <tr>
                         <td>${user.id}</td>
-                        <td>${user.login}</td>
+                        <td>${user.fullName}</td>
                         <td>${user.email}</td>
                         <td>${user.phone}</td>
                         <td>${user.dateOfCreation}</td>

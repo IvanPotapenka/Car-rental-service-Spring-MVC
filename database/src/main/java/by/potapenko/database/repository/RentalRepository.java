@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface RentalRepository extends JpaRepository<RentalEntity, Long> {
 
-    List<RentalEntity> findAllByClientId(Long id);
+    List<RentalEntity> findAllByUserId(Long id);
 
-    List<RentalEntity> findAllByCar_Id(Long id);
+    List<RentalEntity> findAllByCarId(Long id);
 }

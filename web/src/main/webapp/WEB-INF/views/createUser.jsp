@@ -2,7 +2,7 @@
 <%@ page import="java.util.Optional" %>
 <%--
   Created by IntelliJ IDEA.
-  User: Professional
+  uzer: Professional
   Date: 12.04.2023
   Time: 0:48
   To change this template use File | Settings | File Templates.
@@ -16,7 +16,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Create new car</title>
+    <title>Create new user</title>
     <style>
         box {
             display: flex;
@@ -59,14 +59,15 @@
 
             <c:if test="${create_user == null}">
                 <h1>User</h1><br>
-                <label for="login_id">Login</label>
+                <label for="fullName_id">Full name</label>
                 <input class="w3-round-large"
                        type="text"
                        maxlength="20"
-                       placeholder="Enter your login"
-                       name="login"
-                       id="login_id"
+                       placeholder="Enter your full name"
+                       name="fullName"
+                       id="fullName_id"
                        required/><br>
+
                 <label for="email_id">Email</label>
                 <input class="w3-round-large"
                        type="text"
@@ -75,6 +76,7 @@
                        name="email"
                        id="email_id"
                        required/><br>
+
                 <label for="phone">Phone No.</label>
                 <input class="w3-round-large"
                        type="text"
@@ -92,6 +94,7 @@
                        name="password"
                        id="pwd"
                        required/></p><br>
+
                 <label for="role"></label>
                     <select class="w3-round-large"
                             id="role"
@@ -107,7 +110,7 @@
             <c:if test="${create_user == false}">
                 <p style="font-size: 20px" class="w3-text-red"> Sorry! Creating doesn't possible now, please try
                     again </p>
-                <a href="/admin/users/create_user" class="w3-text-blue">Create new user</a><br>
+                <a href="/admin/uzers/create_uzer" class="w3-text-blue">Create new user</a><br>
             </c:if>
         </flex>
     </form>

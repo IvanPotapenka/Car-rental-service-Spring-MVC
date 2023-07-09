@@ -1,6 +1,15 @@
 package by.potapenko.database.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.AttributeOverrides;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,6 +40,9 @@ public class CarEntity implements BaseIdEntity<Long> {
     @Column(name = "model", length = 20, nullable = false)
     private String model;
 
+    @Column(name = "image", length = 256)
+    private String image;
+
     @Column(name = "year_of_release", nullable = false)
     private int year;
 
@@ -38,7 +50,7 @@ public class CarEntity implements BaseIdEntity<Long> {
     private double price;
 
     @Column(name = "fuel_consumption")
-    public double fuelConsumption;
+    private double fuelConsumption;
 
     @Builder.Default
     @OneToMany(mappedBy = "car")

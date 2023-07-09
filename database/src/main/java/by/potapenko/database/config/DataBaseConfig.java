@@ -31,8 +31,6 @@ import static org.modelmapper.config.Configuration.AccessLevel.PRIVATE;
 @PropertySource(value = "classpath:hibernate.properties")
 @EnableJpaRepositories(basePackages = "by.potapenko.database.repository")
 public class DataBaseConfig {
-
-
     @Bean
     public DataSource dataSource(
             @Value("${db.driver}") String driver,

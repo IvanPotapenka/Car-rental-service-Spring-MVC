@@ -39,22 +39,28 @@
 <%@include file="header.jsp" %>
 <div><a href="/">Home </a><a href="${pageContext.request.contextPath}/login_admin">/ admin</a></div>
 <box>
-    <form method="post" class="w3-card-4 w3-blue-grey w3-round-large w3-padding" style="width: 20%">
+    <form method="post" action="/admin/login_post" class="w3-card-4 w3-blue-grey w3-round-large w3-padding" style="width: 20%">
         <flex>
             <p style="font-size: 16px">
             <h1>Admin</h1>
 
-            <c:if test="${find_admin_error==true}">
-                <p class="w3-text-red"> Incorrect login or password!</p>
-                <p><a href="/login_admin" class="w3-text-blue">try again</a></p>
+
+            <c:if test="${param.accessDenied!=null}">
+                <p class="w3-text-red"> Sorry, you do not have permission to view this page!</p>
+                <p><a href="admin/login" class="w3-text-blue">try again</a></p>
             </c:if>
-            <label for="login"></label>
+
+            <c:if test="${param.error!=null}">
+                <p class="w3-text-red"> Incorrect login or password!</p>
+                <p><a href="admin/login" class="w3-text-blue">try again</a></p>
+            </c:if>
+            <label for="email"></label>
             <input class="w3-round-large"
                    type="text"
                    maxlength="20"
-                   placeholder="Enter your login"
-                   name="login"
-                   id="login"
+                   placeholder="Enter your email"
+                   name="username"
+                   id="email"
                    required/><br>
             <label for="pwd"></label>
             <input class="w3-round-large"

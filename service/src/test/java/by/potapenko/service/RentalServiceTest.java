@@ -21,7 +21,7 @@ class RentalServiceTest {
     }
 
     @Test
-    void findAllOrdersOfClient() {
+    void findAllOrdersOfUser() {
     }
 
     @Test

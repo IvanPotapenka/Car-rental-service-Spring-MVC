@@ -59,6 +59,15 @@
 <div><a href="/admin">Home </a><a href="${pageContext.request.contextPath}/admin/rentals/rental/${rental.id}">/ edit</a>
 </div>
 <box>
+
+    <c:if test="${rental_not_found == true}">
+    <flex class="w3-card-4 w3-blue-grey w3-round-large w3-padding" style="width: 30%">
+        <p style="font-size: 26px" class="w3-text-red"> WARNING!</p>
+        <p style="font-size: 20px" > Such a rental doesn't exists!</p>
+        <p style="font-size: 16px"><a href="${pageContext.request.contextPath}/admin/rentals">Back</a></p>
+    </flex>
+    </c:if>
+    <c:if test="${rental_not_found == null}">
     <form method="post" class="w3-card-4 w3-blue-grey w3-round-large w3-padding" style="width: 90%">
         <a style="font-size: 12px" href="${pageContext.request.contextPath}/admin/rentals/create_rental">Create new rental</a>
         <flex>
@@ -68,7 +77,7 @@
                     <tr>
                         <th>Rental id</th>
                         <th>Car</th>
-                        <th>rental full name </th>
+                        <th>Client full name </th>
                         <th>Rental date</th>
                         <th>Return date</th>
                         <th>Rental days</th>
@@ -82,7 +91,7 @@
                     <tr>
                         <td>${rental.id}</td>
                         <td>${rental.carDto.brand} ${rental.carDto.model} No. ${rental.carDto.number}</td>
-                        <td>${rental.clientDto.firstName} ${rental.clientDto.lastName}</td>
+                        <td>${rental.userDto.fullName}</td>
                         <td>${rental.rentalDate}</td>
                         <td>${rental.returnDate}</td>
                         <td>${rental.rentalDays}</td>
@@ -99,6 +108,7 @@
                 <p style="font-size: 16px"><a href="${pageContext.request.contextPath}/admin/rentals">Back</a></p>
         </flex>
     </form>
+    </c:if>
 </box>
 </body>
 </html>

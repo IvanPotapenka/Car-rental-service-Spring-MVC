@@ -17,6 +17,22 @@
     <link rel="shortcut icon" type="image/x-icon"
           href="https://e7.pngegg.com/pngimages/330/810/png-clipart-car-dealership-graphics-sports-car-computer-icons-car-blue-driving.png">
     <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th {
+            font-size: 12px;
+            padding: 10px;
+            border: 1px solid lightblue;
+        }
+        td {
+            font-size: 16px;
+            padding: 10px;
+            border: 1px solid lightblue;
+        }
+
         box {
             display: flex;
             flex-direction: column;
@@ -35,41 +51,60 @@
 
 <body>
 <%@include file="header.jsp" %>
-<div><a href="/">Home </a><a href="${pageContext.request.contextPath}/cars">/ cars</a><a href="/order">/ order</a><a
+<div><a href="/">Home </a><a href="${pageContext.request.contextPath}/catalog">/ catalog</a><a href="/order">/ order</a><a
         href="/booking">/ booking</a></div>
 
 <p class="w3-container w3-padding w3-margin"></p>
 <box>
-    <p style="font-size: 60px" class="w3-text-red">Order No.${rental.id}</p>
-    <box class="w3-card-4 w3-round-large w3-padding" style="width: 50%">
+    <c:if test="${create_rental == true}">
+    <p style="font-size: 20px" class="w3-text-green"> Your order has been formed successfully!</p>
+    <p style="font-size: 10px"> Our manager will call you back within 30 minutes</p>
+    <box class="w3-card-4 w3-round-large w3-padding" style="width: 80%">
         <flex>
-            <c:if test="${create_rental == true}">
-                <h5 class="w3-padding w3-text-black w3-opacity">Client: </h5><h5
-                    class="w3-padding ">${rental.clientDto.firstName} ${rental.clientDto.lastName} </h5>
-                <h5 class="w3-padding w3-text-black w3-opacity">Phone No.</h5><h5
-                    class="w3-padding ">${rental.clientDto.phone} </h5>
-                <h5 class="w3-padding w3-text-black w3-opacity">Car:</h5><h5
-                    class="w3-padding ">${rental.carDto.brand} ${rental.carDto.model} ${rental.carDto.year}</h5>
-                <h5 class="w3-padding w3-text-black w3-opacity">Car No. </h5><h5
-                    class="w3-padding "> ${rental.carDto.number} </h5>
+                <table>
+                    <p style="font-size: 18px">Order No.${rental.id}</p>
+                    <tr>
+                        <th> <span style="font-size: 10px">Client</span></th>
+                        <th> <span style="font-size: 10px">Phone No.</span></th>
+                        <th> <span style="font-size: 10px">Car </span></th>
+                        <th> <span style="font-size: 10px">Car No.</span></th>
+                        <th> <span style="font-size: 10px">Rental date</span></th>
+                        <th> <span style="font-size: 10px">Return date</span></th>
+                        <th> <span style="font-size: 10px">Rental days </span></th>
+                        <th> <span style="font-size: 10px">Total price</span></th>
+                    </tr>
+                    <tr>
+                        <th style="font-size: 16px"><span style="color: crimson" aria-flowto=""> ${rental.userDto.fullName}</span></th>
+                        <th style="font-size: 16px"><span style="color: crimson" aria-flowto=""> ${rental.userDto.phone}</span></th>
+                        <th style="font-size: 16px"><span style="color: crimson" aria-flowto=""> ${rental.carDto.brand} ${rental.carDto.model} ${rental.carDto.year}</span></th>
+                        <th style="font-size: 16px"><span style="color: crimson" aria-flowto=""> ${rental.carDto.number}</span></th>
+                        <th style="font-size: 16px"><span style="color: crimson" aria-flowto="">${rental.rentalDate} at
+                12.00 PM</span></th>
+                        <th style="font-size: 16px"><span style="color: crimson" aria-flowto=""> ${rental.returnDate} at
+                12.00 PM</span></th>
+                        <th style="font-size: 16px"><span style="color: crimson" aria-flowto=""> ${rental.rentalDays}</span></th>
+                        <th style="font-size: 16px"><span style="color: crimson" aria-flowto=""> ${rental.price}$</span></th>
+                    </tr>
+                </table>
 
-                <h5 class="w3-padding w3-text-black w3-opacity">Rental date:</h5><h5 class="w3-padding">${rental.rentalDate} at
-                12.00 PM</h5>
-                <h5 class="w3-padding w3-text-black w3-opacity">Return date:</h5><h5 class="w3-padding"> ${rental.returnDate} at
-                12.00 PM</h5>
-                <h5 class="w3-padding w3-text-black w3-opacity"> Rental: </h5><h5 class="w3-padding"> ${rental.rentalDays}
-                days</h5>
-                <h5 class="w3-padding w3-text-black"> Where to pick up the car? 100 New Bridge Street, London, EC4V 6JA</h5>
-                <h3 class="w3-padding w3-text-red"> Amount to be paid ${rental.price}$</h3>
+                <h5 class="w3-padding w3-text-black"> Where to pick up the car?
+                    <a target="_blank" href="https://www.google.com/maps/place/Enterprise+Car+%26+Van+Hire+-+London+Bow/@51.528167,-0.0229837,17z/data=!3m1!4b1!4m6!3m5!1s0x48761fffe08f667f:0x8ab07dcc3e9e2ca2!8m2!3d51.528167!4d-0.020795!16s%2Fg%2F1td7h6pv?entry=ttu">
+                    145b Bow Road,CITY OF BOW,London,ENG,GB,E3 2SA</a></h5>
+
+                <p class="w3-btn w3-round-large w3-red" style="font-size: 10px"><a href="/account/orders"> Check status order</a></p>
             </c:if>
             <c:if test="${create_rental == false}">
-                <p style="font-size: 20px" class="w3-text-red"> Sorry! Creating doesn't possible now, please try
-                    again letter </p>
-            </c:if><br>
+           <box>
+            <flex class="w3-card-4 w3-blue-grey w3-round-large w3-padding" style="width: 60%">
+                <p style="font-size: 20px" class="w3-text-white"> Sorry! Creating doesn't possible now, please try
+                    again letter </p><br>
+            </flex>
+           </box>
         </flex>
+            </c:if><br>
     </box>
     </br>
-</box>
+</box><br><br><br><br><br><br><br><br><br><br><br
 <%@include file="footer.jsp" %>
 </body>
 </html>

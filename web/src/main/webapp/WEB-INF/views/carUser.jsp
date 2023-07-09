@@ -57,6 +57,7 @@
 <box class="w3-container ">
     <box class="w3-card-4 w3-round-large w3-padding" style="width: 50%"><br>
         <h2 class="w3-text-blue"> ${car.brand} ${car.model} ${car.year}</a></h2>
+        <figure class="mb-0"> <img src="${car.image}" alt="${car.brand} ${car.model}"></figure><br>
         <flex>
             <h7>&#9989; ${car.placeQuantity} places</h7>
             <h7>&#9989; ${car.color}</h7>
@@ -67,19 +68,20 @@
             <h7>&#9989; Engine capacity ${car.engineCapacity}l</h7>
             <h7>&#9989; Engine power ${car.horsePower} h/p</h7>
             <h7>&#9989; Engine fuel type ${car.fuelType}</h7>
-        </flex>
+        </flex><br>
         <table>
+            <p style="font-size: 18px">The cost of booking</p>
             <tr>
-                <th>1-3 days</th>
-                <th>4-7 days</th>
-                <th>7-15 days</th>
-                <th>15-30 days</th>
+                <th> <span style="font-size: 10px">1-3 days </span></th>
+                <th> <span style="font-size: 10px">4-7 days </span></th>
+                <th> <span style="font-size: 10px">8-15 days </span></th>
+                <th> <span style="font-size: 10px">16-30 days </span></th>
             </tr>
             <tr>
-                <th>${car.price*1}$</th>
-                <th>${car.price*0.9}$</th>
-                <th>${car.price*0.8}$</th>
-                <th>${car.price*0.7}$</th>
+                <th style="font-size: 16px"><span style="color: crimson" aria-flowto=""> ${car.price*1.0}$</span></th>
+                <th style="font-size: 16px"><span style="color: crimson" aria-flowto=""> ${car.price*0.9}$</span></th>
+                <th style="font-size: 16px"><span style="color: crimson" aria-flowto=""> ${car.price*0.75}$</span></th>
+                <th style="font-size: 16px"><span style="color: crimson" aria-flowto=""> ${car.price*0.6}$</span></th>
             </tr>
         </table>
         <br>

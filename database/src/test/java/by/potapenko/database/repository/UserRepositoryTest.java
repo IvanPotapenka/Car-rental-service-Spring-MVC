@@ -1,6 +1,7 @@
 package by.potapenko.database.repository;
 
 import by.potapenko.database.config.DataBaseConfig;
+import by.potapenko.database.entity.ContactClient;
 import by.potapenko.database.entity.UserEntity;
 import by.potapenko.database.entity.enam.UserRole;
 import org.junit.jupiter.api.MethodOrderer;
@@ -33,7 +34,7 @@ class UserRepositoryTest {
     void whenFindAllInvoked_ThenAllTheClientsAreReturned() {
         String[] actual = userRepository.findAll()
                 .stream()
-                .map(UserEntity::getLogin)
+                .map(UserEntity::getFullName)
                 .toArray(String[]::new);
         String[] expected = List.of("Bob", "Tom", "Rick")
                 .toArray(String[]::new);
@@ -46,24 +47,26 @@ class UserRepositoryTest {
         Long id = 2L;
         Optional<UserEntity> actual = userRepository.findById(id);
         assertTrue(actual.isPresent());
-        assertEquals("Bob", actual.get().getLogin());
+        assertEquals("Bob", actual.get().getFullName());
     }
 
     @Test
     @Order(3)
     void whenCreatedInvokedWithUser_ThenUserIsSaved() {
         var userTest = UserEntity.builder()
-                .login("Jhon")
-                .email("jhon@mail.ru")
-                .phone("+3756789345")
+                .fullName("Jhon")
+                .contact(ContactClient.builder()
+                        .email("jhon@mail.ru")
+                        .phone("+3756789345")
+                        .build())
                 .password("1234")
                 .role(UserRole.USER)
                 .build();
         userRepository.save(userTest);
         List<String> allUserLogin = userRepository.findAll().stream()
-                .map(UserEntity::getLogin)
+                .map(UserEntity::getFullName)
                 .toList();
-        assertTrue(allUserLogin.contains(userTest.getLogin()));
+        assertTrue(allUserLogin.contains(userTest.getFullName()));
     }
 
     @Test
@@ -81,8 +84,8 @@ class UserRepositoryTest {
     void whenUpdateById_ThenSavedUserUpdate() {
         Long id = 2L;
         Optional<UserEntity> user = userRepository.findById(id);
-        user.get().setLogin("Jhonny86");
+        user.get().setFullName("Jhonny86");
         userRepository.save(user.get());
-        assertEquals("Jhonny86", user.get().getLogin());
+        assertEquals("Jhonny86", user.get().getFullName());
     }
 }

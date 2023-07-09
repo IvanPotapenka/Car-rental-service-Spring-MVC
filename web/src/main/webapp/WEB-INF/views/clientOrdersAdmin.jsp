@@ -78,7 +78,7 @@
                     <th>Rental days</th>
                     <th>Price</th>
                     <th>Status</th>
-<%--                    <th>Creator rental</th>--%>
+                    <th>Creator</th>
                     <th>Date of creation</th>
                     <th>Edit</th>
                 </tr>
@@ -92,7 +92,7 @@
                         <td>${rental.rentalDays}</td>
                         <td>${rental.price}</td>
                         <td><p style="color: crimson"> ${rental.status}</p></td>
-<%--                        <td>${rental.client.user.role}</td>--%>
+                        <td>${rental.creator}</td>
                         <td>${rental.dateOfCreation}</td>
 
                         <td><a href="${pageContext.request.contextPath}/admin/rentals/rental/${rental.id}"
