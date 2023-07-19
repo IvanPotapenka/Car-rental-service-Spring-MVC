@@ -10,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.util.List;
 
@@ -20,7 +19,6 @@ import static by.potapenko.web.util.PagesUtil.CATALOG_FILTER;
 
 @Controller
 @RequestMapping("catalog")
-@SessionAttributes("car")
 @RequiredArgsConstructor
 public class CatalogController {
 

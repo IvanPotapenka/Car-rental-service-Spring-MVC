@@ -1,34 +1,34 @@
 package by.potapenko.service;
 
-import by.potapenko.database.dto.CarDto;
 import by.potapenko.database.dto.RentalDto;
 import by.potapenko.database.entity.RentalEntity;
-import by.potapenko.database.entity.enam.Status;
 import by.potapenko.database.repository.RentalRepository;
+import by.potapenko.database.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional(readOnly = true)
+@Transactional
 @RequiredArgsConstructor
 public class RentalService {
     private final RentalRepository rentalRepository;
+    private final UserRepository userRepository;
     private final ModelMapper modelMapper;
 
-    @Transactional
-    public RentalDto create(RentalDto rentalDto) {
+
+    public Long create(RentalDto rentalDto) {
         RentalEntity newRental = modelMapper.map(rentalDto, RentalEntity.class);
-        newRental.setStatus(Status.CHECK);
-        newRental.setDateOfCreation(LocalDateTime.now());
-        return convertToRentalDto(rentalRepository.save(newRental));
+        userRepository.findById(rentalDto.getUserDto().getId()).get().addOrder(newRental);
+        return rentalRepository.save(newRental).getId();
     }
 
+    @Transactional(readOnly = true)
     public List<RentalDto> getAll() {
         return rentalRepository.findAll()
                 .stream()
@@ -36,12 +36,13 @@ public class RentalService {
                 .toList();
     }
 
-    @Transactional
+
     public void deleteById(Long id) {
         rentalRepository.findById(id)
                 .ifPresent(rentalRepository::delete);
     }
 
+    @Transactional(readOnly = true)
     public Optional<RentalDto> getById(Long id) {
         return rentalRepository.findById(id)
                 .map(this::convertToRentalDto);
@@ -51,19 +52,21 @@ public class RentalService {
         return (Integer) (int) Math.ceil(rentalRepository.count() / limit);
     }
 
-    public List<RentalDto> findAllOrdersOfClient(Long id) {
-        return rentalRepository.findAllByClientId(id)
+    @Transactional(readOnly = true)
+    public List<RentalDto> findAllOrdersOfUser(Long id) {
+        return rentalRepository.findAllByUserId(id)
                 .stream().map(this::convertToRentalDto)
                 .toList();
     }
 
+    @Transactional(readOnly = true)
     public List<RentalDto> getAllOrdersOfCar(Long id) {
-        return rentalRepository.findAllByCar_Id(id)
+        return rentalRepository.findAllByCarId(id)
                 .stream().map(this::convertToRentalDto)
                 .toList();
     }
 
-    @Transactional
+
     public Optional<RentalDto> update(Long id, RentalDto update) {
         Optional<RentalEntity> existedRental = rentalRepository.findById(id);
         if (existedRental.isPresent()) {
@@ -74,11 +77,10 @@ public class RentalService {
         return Optional.empty();
     }
 
-    public RentalDto getCountDaysAndPriceRental(RentalDto rentalDto, CarDto carDto) {
-        int days = rentalDto.getReturnDate().getDayOfMonth()
-                - rentalDto.getRentalDate().getDayOfMonth();
-        rentalDto.setRentalDays(days);
-        double price = carDto.getPrice();
+    public RentalDto getCountDaysAndPriceRental(LocalDate rentalDate, LocalDate returnDate, Double price) {
+        RentalDto rentalDto = new RentalDto();
+        int days = returnDate.getDayOfMonth()
+                - rentalDate.getDayOfMonth();
         if (days <= 3) {
             price *= 1;
         } else if (days <= 7) {
@@ -88,6 +90,9 @@ public class RentalService {
         } else if (days > 16) {
             price *= 0.65;
         }
+        rentalDto.setRentalDate(rentalDate);
+        rentalDto.setReturnDate(returnDate);
+        rentalDto.setRentalDays(days);
         rentalDto.setPrice(price * days);
         return rentalDto;
     }

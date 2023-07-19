@@ -16,5 +16,6 @@
 </head>
 <body>
 <%@include file="headerAdmin.jsp" %>
+<img src="https://drivedrom.ru/wp-content/uploads/gde-vzyat-avtomobil-v-arendu-.jpg" >
 </body>
 </html>

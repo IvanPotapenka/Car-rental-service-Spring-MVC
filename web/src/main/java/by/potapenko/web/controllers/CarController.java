@@ -3,6 +3,7 @@ package by.potapenko.web.controllers;
 import by.potapenko.database.dto.CarDto;
 import by.potapenko.service.CarService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +20,7 @@ import static by.potapenko.web.util.PagesUtil.CREATE_CAR;
 import static by.potapenko.web.util.PagesUtil.UPDATE_CAR;
 
 @Controller
+@PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER')")
 @RequestMapping("admin/cars")
 @RequiredArgsConstructor
 public class CarController {

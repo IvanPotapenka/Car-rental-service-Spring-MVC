@@ -13,19 +13,18 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional(readOnly = true)
+@Transactional
 @RequiredArgsConstructor
 public class CarService {
 
     private final CarRepository carRepository;
     private final ModelMapper modelMapper;
 
-    @Transactional
+
     public Long create(CarDto car) {
         return carRepository.save(convertToCarEntity(car)).getId();
     }
 
-    @Transactional
     public Optional<CarDto> update(Long id, CarDto update) {
         Optional<CarEntity> existedCar = carRepository.findById(id);
         if (existedCar.isPresent()) {
@@ -35,7 +34,7 @@ public class CarService {
         }
         return Optional.empty();
     }
-
+    @Transactional(readOnly = true)
     public List<CarDto> getAll() {
         return carRepository.findAll()
                 .stream()
@@ -43,19 +42,19 @@ public class CarService {
                 .toList();
     }
 
-    @Transactional
+
     public void deleteById(Long id) {
         carRepository.findById(id)
                 .ifPresent(carRepository::delete);
     }
-
+    @Transactional(readOnly = true)
     public List<CarDto> getByFilter(CarFilter filter) {
         return carRepository.findByFilter(filter)
                 .stream()
                 .map(this::convertToCarDto)
                 .toList();
     }
-
+    @Transactional(readOnly = true)
     public Optional<CarDto> getById(Long id) {
         return carRepository.findById(id)
                 .map(this::convertToCarDto);

@@ -72,13 +72,13 @@
                 <tr>
                     <th>Order No.</th>
                     <th>Car</th>
-                    <th>Client</th>
+                    <th>User</th>
                     <th>Rental date</th>
                     <th>Return date</th>
                     <th>Rental days</th>
                     <th>Price</th>
                     <th>Status</th>
-<%--                    <th>Creator rental</th>--%>
+                    <th>Creator rental</th>
                     <th>Date of creation</th>
                     <th>Edit</th>
                 </tr>
@@ -86,13 +86,13 @@
                     <tr>
                         <td>${rental.id}</td>
                         <td>${rental.carDto.brand} ${rental.carDto.model} No. ${rental.carDto.number}</td>
-                        <td>${rental.clientDto.id} ${rental.clientDto.firstName} ${rental.clientDto.lastName} </td>
+                        <td>${rental.userDto.id} ${rental.userDto.fullName}</td>
                         <td>${rental.rentalDate}</td>
                         <td>${rental.returnDate}</td>
                         <td>${rental.rentalDays}</td>
                         <td>${rental.price}</td>
                         <td><p style="color: crimson">${rental.status}</p> </td>
-<%--                        <td>${rental.clientDto.role} </td>--%>
+                        <td>${rental.creator} </td>
                         <td>${rental.dateOfCreation}</td>
 
                         <td><a href="${pageContext.request.contextPath}/admin/rentals/rental/${rental.id}"

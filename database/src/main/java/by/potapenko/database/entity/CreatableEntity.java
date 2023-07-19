@@ -16,4 +16,5 @@ public abstract class CreatableEntity<T extends Serializable> implements BaseIdE
     @CreationTimestamp
     @Column(name = "date_of_creation", nullable = false)
     private LocalDateTime dateOfCreation;
+
 }

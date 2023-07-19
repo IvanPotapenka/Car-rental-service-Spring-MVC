@@ -74,7 +74,7 @@
           onclick="location.href='/account/profile'">
         <p style="font-size: 16px">
         <h4>&#128104;</h4>
-        <h6>${user.login} </h6>
+        <h6>${uzer.fullName} </h6>
     </flex>
     <flex class="w3-btn w3-border w3-round-large w3-padding" style="width: 100%"
           onclick="location.href='/account/orders'">
@@ -91,9 +91,10 @@
 </nav1>
 <box class="w3-container ">
     <div class="w3-card-4 w3-round-large w3-padding" style="width: 50%"><br>
-        <h4> ${user.role}:</h4><h4 class="w3-text-blue"> ${user.login} </h4><br>
-        <h6>Email:</h6><h6 class="w3-text-blue"> ${user. email}</h6><br>
-        <h6>Phone: </h6> <h6 class="w3-text-blue"> ${user.phone}</h6><br>
+        <h4> ${uzer.role}:</h4><h4 class="w3-text-blue"> ${uzer.fullName} </h4><br>
+        <h6>Email:</h6><h6 class="w3-text-blue"> ${uzer. email}</h6><br>
+        <h6>Phone: </h6> <h6 class="w3-text-blue"> ${uzer.phone}</h6><br>
+        <h6>Address: </h6> <h6 class="w3-text-blue"> ${uzer.address}</h6><br>
     </div> <br><br>
 </box><br>
 <%@include file="footer.jsp" %>

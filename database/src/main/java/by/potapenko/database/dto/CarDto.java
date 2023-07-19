@@ -10,6 +10,7 @@ public class CarDto {
     private Long id;
     private String brand;
     private String model;
+    private String image;
     private int year;
     private double price;
     private int placeQuantity;
@@ -22,5 +23,5 @@ public class CarDto {
     private FuelType fuelType;
     private String vinCode;
     private String number;
-    public double fuelConsumption;
+    private double fuelConsumption;
 }

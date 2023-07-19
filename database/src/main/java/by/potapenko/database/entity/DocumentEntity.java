@@ -17,7 +17,7 @@ import lombok.ToString;
 
 @Data
 @Builder
-@ToString(exclude = "client")
+@ToString(exclude = "user")
 @EqualsAndHashCode(of = "id", callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,7 +29,6 @@ public class DocumentEntity implements BaseIdEntity<Long> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @Column(name = "passport_No", nullable = false, unique = true)
     private String passport;
 
@@ -37,6 +36,6 @@ public class DocumentEntity implements BaseIdEntity<Long> {
     private String driverLicense;
 
     @OneToOne
-    @JoinColumn(name = "client_id", referencedColumnName = "id")
-    private ClientEntity client;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private UserEntity user;
 }

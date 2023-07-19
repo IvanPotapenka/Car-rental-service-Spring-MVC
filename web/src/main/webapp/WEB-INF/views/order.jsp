@@ -9,7 +9,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="java.time.LocalDate"%>
+<%@page import="java.time.LocalDate" %>
 
 <html>
 <head>
@@ -29,6 +29,7 @@
             padding: 10px;
             border: 1px solid lightblue;
         }
+
         td {
             font-size: 16px;
             padding: 10px;
@@ -53,20 +54,23 @@
             padding-top: 80px;
             padding-left: 20px;
         }
+
         nav1 {
             margin-top: 100px;
             position: fixed;
             scroll-margin-right: 10px;
             width: 20%;
         }
+
         input {
             text-align: center;
             width: 200px;
             height: 30px;
             font-size: 10px;
         }
-        .inp{
-            display:  flex;
+
+        .inp {
+            display: flex;
         }
     </style>
 </head>
@@ -75,10 +79,24 @@
 <%@include file="header.jsp" %>
 <div><a href="/">Home </a><a href="${pageContext.request.contextPath}/catalog">/ catalog</a>/ order</div>
 <p class="w3-container w3-padding w3-margin"></p>
+
+
+<c:if test="${car_not_found == true}">
+<flex class="w3-container w3-padding">
+    <p>
+    <h2>We are sorry((</h2></p>
+    <p>
+    <h2>This car not found in catalog</h2></p></br>
+    <a style="color: cornflowerblue" href="${pageContext.request.contextPath}/catalog">Select another car from catalog</a></p>
+</flex>
+    </c:if>
+
+<c:if test="${car_not_found == null}">
 <box>
     <box class="w3-card-4 w3-round-large w3-padding" style="width: 50%">
         <h2><a href=${pageContext.request.contextPath}/catalog/car/${car.id}
-               class="w3-text-blue"> ${car.brand} ${car.model} ${car.year}</a></h2>
+ class="w3-text-blue"> ${car.brand} ${car.model} ${car.year}</a></h2>
+        <figure class="mb-0"><img src="${car.image}" alt="">${car.brand} ${car.model}</figure>
         <h6> &#9989; ${car.placeQuantity} places &#9989; ${car.transmission}
             &#9989;${car.doorQuantity} doors &#9989;${car.fuelType}</h6><br>
         <table>
@@ -96,22 +114,23 @@
                 <td> ${car.horsePower} h/p</td>
                 <td> ${car.fuelType}</td>
             </tr>
-        </table><br>
-            <table>
-                <p style="font-size: 18px">The cost of booking</p>
-                <tr>
-                    <th> <span style="font-size: 10px">1-3 days </span></th>
-                    <th> <span style="font-size: 10px">4-7 days </span></th>
-                    <th> <span style="font-size: 10px">8-15 days </span></th>
-                    <th> <span style="font-size: 10px">16-30 days </span></th>
-                </tr>
-                <tr>
-                    <th><span style="color: crimson" aria-flowto=""> ${car.price*1.0}$</span></th>
-                    <th><span style="color: crimson" aria-flowto=""> ${car.price*0.9}$</span></th>
-                    <th><span style="color: crimson" aria-flowto=""> ${car.price*0.75}$</span></th>
-                    <th><span style="color: crimson" aria-flowto=""> ${car.price*0.65}$</span></th>
-                </tr>
-            </table>
+        </table>
+        <br>
+        <table>
+            <p style="font-size: 18px">The cost of booking</p>
+            <tr>
+                <th><span style="font-size: 10px">1-3 days </span></th>
+                <th><span style="font-size: 10px">4-7 days </span></th>
+                <th><span style="font-size: 10px">8-15 days </span></th>
+                <th><span style="font-size: 10px">16-30 days </span></th>
+            </tr>
+            <tr>
+                <th><span style="color: crimson" aria-flowto=""> ${car.price*1.0}$</span></th>
+                <th><span style="color: crimson" aria-flowto=""> ${car.price*0.9}$</span></th>
+                <th><span style="color: crimson" aria-flowto=""> ${car.price*0.75}$</span></th>
+                <th><span style="color: crimson" aria-flowto=""> ${car.price*0.65}$</span></th>
+            </tr>
+        </table>
         <br>
         <flex>
             <h3 class="w3-padding w3-text-blue">Include:</h3>
@@ -124,10 +143,6 @@
             </h7>
         </flex>
 
-        <c:if test="${sessionScope.user == null}">
-            <h4 class="w3-text-blue w3-round-large"> To place an order, please <a href=/login>Sing in </a></h4>
-        </c:if>
-        <c:if test="${sessionScope.user != null}">
         <form action="/booking">
             <div class="inp" style="width: 100%">
                 <h5 class="w3-padding w3-text-blue">When do you rent? </h5>
@@ -150,14 +165,15 @@
                        id="return_date_id"
                        required/><br>
 
-                <input hidden name="id" value="${car.id}"/>
+                <input hidden name="price" value="${car.price}"/>
+                                <input hidden name="carId" value="${car.id}"/>
             </div>
             <button class="w3-btn w3-round-large w3-right w3-red w3-padding">Booking
             </button>
         </form>
-        </c:if>
         <br>
     </box>
+    </c:if>
     </br>
 </box>
 <%@include file="footer.jsp" %>

@@ -14,5 +14,6 @@ import lombok.NoArgsConstructor;
 public class ContactClient {
 
     private String phone;
+    private String email;
     private String address;
 }

@@ -162,6 +162,7 @@
             <box class="w3-card-4 w3-round-large w3-padding" style="width: 50%"><br>
                 <h2><a href=${pageContext.request.contextPath}/catalog/car/${car.id}
                        class="w3-text-blue"> ${car.brand} ${car.model} ${car.year}</a></h2>
+                <figure class="mb-0"> <img src="${car.image}" alt="${car.brand} ${car.model}"></figure>
                 <h6> &#9989; ${car.placeQuantity} places &#9989; ${car.transmission}
                     &#9989;${car.doorQuantity} doors &#9989; ${car.fuelType}
 
@@ -182,7 +183,7 @@
                 </table>
                 <br>
                 <h2 class="w3-text-red">Price ${car.price}$</h2><br>
-                <button class="w3-btn w3-round-large w3-red" onclick="location.href='/order?id=${car.id}'">Order
+                <button class="w3-btn w3-round-large w3-red" onclick="location.href='/order/${car.id}'">Order
                 </button>
                 </br>
             </box>

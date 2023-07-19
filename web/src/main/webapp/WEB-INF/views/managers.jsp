@@ -16,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href=
             "https://unpkg.com/@primer/css@^18.0.0/dist/primer.css"/>
-    <title>Managers</title>
+    <title>Users</title>
     <style>
         table {
             border-collapse: collapse;
@@ -62,37 +62,37 @@
 </head>
 <body>
 <%@include file="headerAdmin.jsp" %>
-<div><a href="/admin">Home </a>/ managers </div>
+<div><a href="/admin">Home </a> / managers </div>
 <box>
-    <form method="post" class="w3-card-4 w3-blue-grey w3-round-large w3-padding" style="width: 90%">
-        <a style="font-size: 12px" href="${pageContext.request.contextPath}/admin/managers/create_manager">Create new manager</a>
+    <form method="post" class="w3-card-4 w3-blue-grey w3-round-large w3-padding" style="width: 70%">
+        <a style="font-size: 12px" href="${pageContext.request.contextPath}/admin/users/create_user">Create new manager</a>
         <flex>
-            <c:if test="${manager_delete_success==true}">
-                <p style="font-size: 20px" class="w3-text-green"> Manager was successfully deleted</p>
-                <p style="font-size: 16px"><a href="/admin/managers">Back</a></p>
+            <c:if test="${user_delete_success==true}">
+                <p style="font-size: 20px" class="w3-text-green"> User was successfully deleted</p>
+                <p style="font-size: 16px"><a href="${pageContext.request.contextPath}/admin/managers">Back</a></p>
             </c:if>
-            <c:if test="${manager_delete_success==null}">
+            <c:if test="${user_delete_success==null}">
             <p style="font-size: 16px">
             <h1>Managers</h1>
-            <table style="font-size: 10px">
+            <table>
                 <tr>
                     <th>Manager_id</th>
-                    <th>First name</th>
-                    <th>Last name</th>
-                    <th>email</th>
-                    <th>Phone No.</th>
+                    <th>Full name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
                     <th>Date of creation</th>
+                    <th>Role</th>
                     <th>Edit</th>
                 </tr>
-                <c:forEach var="manager" items="${managers}">
+                <c:forEach var="user" items="${managers}">
                     <tr>
-                        <td>${manager.id}</td>
-                        <td>${manager.firstName}</td>
-                        <td>${manager.lastName}</td>
-                        <td>${manager.email}</td>
-                        <td>${manager.phone}</td>
-                        <td>${manager.dateOfCreation}</td>
-                        <td><a href="${pageContext.request.contextPath}/admin/managers/manager?id=${manager.id}"
+                        <td>${user.id}</td>
+                        <td>${user.fullName}</td>
+                        <td>${user.email}</td>
+                        <td>${user.phone}</td>
+                        <td>${user.dateOfCreation}</td>
+                        <td>${user.role}</td>
+                        <td><a href="${pageContext.request.contextPath}/admin/managers/manager/${user.id}"
                                class="w3-text-blue">EDIT</a></td>
                     </tr>
                 </c:forEach>
@@ -107,9 +107,9 @@
             <nav2 class="paginate-container">
                 <div2 class="pagination">
                     <c:if test="${page > 1 }">
-                        <a href="${pageContext.request.contextPath}/admin/managers?limit=${limit}&page=${page-1}"
+                        <a href="${pageContext.request.contextPath}/admin/users?limit=${limit}&page=${page-1}"
                            class="previous_page" aria-disabled="false">Previous</a>
-                        <a href="${pageContext.request.contextPath}/admin/managers?limit=${limit}&page=1"> 1 </a>
+                        <a href="${pageContext.request.contextPath}/admin/users?limit=${limit}&page=1"> 1 </a>
                         <span class="gap"> … </span>
                     </c:if>
                     <c:if test="${page == 1}">
@@ -121,7 +121,7 @@
                         </c:if>
                         <c:if test="${i < count }">
                             <c:if test="${page != i }">
-                                <a href="/admin/managers?limit=${limit}&page=${i}"> ${i} </a>
+                                <a href="/admin/users?limit=${limit}&page=${i}"> ${i} </a>
                             </c:if>
                         </c:if>
                     </c:forEach>
@@ -130,9 +130,9 @@
                     </c:if>
                     <c:if test="${count != page}">
                         <span class="gap"> … </span>
-                        <a href="${pageContext.request.contextPath}/admin/managers?limit=${limit}&page=${count}"> ${count} </a>
+                        <a href="${pageContext.request.contextPath}/admin/users?limit=${limit}&page=${count}"> ${count} </a>
                         <a class="next_page"
-                           href="${pageContext.request.contextPath}/admin/managers?limit=${limit}&page=${page+1}"
+                           href="${pageContext.request.contextPath}/admin/users?limit=${limit}&page=${page+1}"
                            aria-label="Next">Next</a>
                     </c:if>
                 </div2>

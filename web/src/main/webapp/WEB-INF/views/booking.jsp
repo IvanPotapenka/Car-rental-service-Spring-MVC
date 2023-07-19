@@ -77,93 +77,164 @@
 <body>
 <%@include file="header.jsp" %>
 <div><a href="/">Home </a><a href="${pageContext.request.contextPath}/cars">/ cars</a><a href="/order">/ order</a>
-        / booking</div>
+    / booking
+</div>
+<%--<c:if test="${user_exist == true}">--%>
+<%--    <p class="w3-text-red"> Such a user already exists!</p>--%>
+<%--    <p><a href="/login" class="w3-text-blue">Please log in</a></p>--%>
+<%--</c:if>--%>
+
+<c:if test="${car_not_found == true}">
+    <flex class="w3-container w3-padding">
+        <p>
+        <h2>We are sorry((</h2></p>
+        <p>
+        <h2>This car not found in catalog</h2></p></br>
+        <a style="color: cornflowerblue" href="${pageContext.request.contextPath}/catalog">Select another car from catalog</a></p>
+    </flex>
+</c:if>
+
+
+<c:if test="${car_not_found == null}">
 <c:if test="${create_client == null}">
+
 <p class="w3-container w3-padding w3-margin"></p>
 <box><p style="font-size: 60px" class="w3-text-red">Booking</p>
-    <box class="w3-card-4 w3-round-large w3-padding" style="width: 50%">
+
+    <box class="w3-card-4 w3-round-large w3-padding" style="width: 60%">
         <h2><a href=${pageContext.request.contextPath}/cars?id=${car.id}
                class="w3-text-blue"> ${car.brand} ${car.model} ${car.year}</a></h2>
+        <figure class="mb-0"><img src="${car.image}" alt="${car.brand} ${car.model}"></figure>
+
         <h6> &#9989; ${car.placeQuantity} places &#9989; ${car.transmission}
             &#9989;${car.doorQuantity} doors &#9989; ${car.fuelType} </h6>
         <flex>
-            <h5 class="w3-padding w3-text-black">Rental date:</h5><h5 class="w3-padding w3-text-red">${rental.rentalDate} at 12.00 PM</h5>
-            <h5 class="w3-padding w3-text-black">Return date:</h5><h5 class="w3-padding w3-text-red"> ${rental.rentalDate} at 12.00 PM</h5>
-            <h4 class="w3-padding w3-text-red"> Rental ${rental.rentalDays} days</h4>
-            <h3 class="w3-padding w3-text-red"> Total price ${rental.price}$</h3>
+
+            <table>
+                <p style="font-size: 18px">Detail order</p>
+                <tr>
+                    <th> <span style="font-size: 10px">Rental date </span></th>
+                    <th> <span style="font-size: 10px">Return date:</span></th>
+                    <th> <span style="font-size: 10px">Rental days</span></th>
+                    <th> <span style="font-size: 10px">Total price </span></th>
+                </tr>
+                <tr>
+                    <th style="font-size: 16px"><span style="color: crimson" aria-flowto=""> ${rental.rentalDate} at 12.00 PM</span></th>
+                    <th style="font-size: 16px"><span style="color: crimson" aria-flowto=""> ${rental.rentalDate} at 12.00 PM</span></th>
+                    <th style="font-size: 16px"><span style="color: crimson" aria-flowto=""> ${rental.rentalDays}</span></th>
+                    <th style="font-size: 16px"><span style="color: crimson" aria-flowto=""> ${rental.price}$</span></th>
+                </tr>
+            </table>
             <h3 class="w3-padding w3-text-blue"> You confirm compliance with the minimum rental conditions:</h3>
 
             <h7 class="w3-padding w3-text-black ">&#9989; Driving experience of at least 2 years.</h7>
             <h7 class="w3-padding w3-text-black ">&#9989; The minimum age is 20 years.</h7>
             <h7 class="w3-padding w3-text-black ">&#9989; The minimum rental period is 2 hours.</h7>
-            <h7 class="w3-padding w3-text-black ">&#9989; Mileage limits - 300 km / day, every subsequent 300 km. for $ 10 (at the rate of the NBRB).</h7>
-            <h7 class="w3-padding w3-text-black ">&#9989; Without the possibility of leaving the Republic of Belarus.</h7>
+            <h7 class="w3-padding w3-text-black ">&#9989; Mileage limits - 300 km / day, every subsequent 300 km. for $
+                10 (at the rate of the NBRB).
+            </h7>
+            <h7 class="w3-padding w3-text-black ">&#9989; Without the possibility of leaving the Republic of Belarus.
+            </h7>
             <h7 class="w3-padding w3-text-black ">&#9989; The rental price includes CASCO insurance.</h7>
             <h7 class="w3-padding w3-text-black ">&#9989; Deposit (deposit) 500r.</h7>
 
         </flex>
+
     </box>
     </br>
-    <form method="post" class="w3-card-4  w3-round-large w3-padding" style="width: 90%">
-        <flex>
 
-                <h1>Your data</h1><br>
-                <table style="font-size: 10px">
+    <form method="post" class="w3-card-4  w3-round-large w3-padding" style="width: 60%">
+        <flex>
+            <h1>Your data</h1><br>
+            <table style="font-size: 10px">
+                <tr>
+                    <th>*Full name</th>
+                    <th>*Date of birthday</th>
+                    <th>*Phone number</th>
+                    <th>*Email</th>
+                    <th>Address</th>
+                </tr>
+
+                <td><label for="full_name_id"></label>
+                    <input class="w3-round-large"
+                           maxlength="20"
+                           type="text"
+                           placeholder="Enter full name"
+                           name="fullName"
+                           value="${uzer.fullName}"
+                           id="full_name_id"
+                           required/><br></td>
+
+                <td><label for="date_of_birthday_id"></label>
+                    <input class="w3-round-large"
+                           type="date"
+                           min="1950-01-01"
+                           max="2003-01-01"
+                           name="dateOfBirthday"
+                           id="date_of_birthday_id"
+                           required/><br></td>
+
+                <td><label for="phone_id"></label>
+                    <input class="w3-round-large"
+                           maxlength="13"
+                           type="tel"
+                           placeholder="Enter your phone"
+                           name="phone"
+                           value="${uzer.phone}"
+                           id="phone_id"
+                    /><br></td>
+
+                <td><label for="email_id"></label>
+                    <input class="w3-round-large"
+                           maxlength="13"
+                           type="email"
+                           placeholder="Enter your email"
+                           name="email"
+                           value="${uzer.email}"
+                           id="email_id"
+                    /><br></td>
+
+                <td><label for="address_id"></label>
+                    <input class="w3-round-large"
+                           maxlength="100"
+                           type="text"
+                           placeholder="Enter city,street,No."
+                           name="address"
+                           value="${uzer.address}"
+                           id="address_id"
+                    /><br></td>
+            </table>
+                <sec:authorize access="!isAuthenticated()">
+                    <h1>Password </h1><br>
+                    <table style="font-size: 10px">
                     <tr>
-                        <th>*First name</th>
-                        <th>*Last name</th>
-                        <th>*Date of birthday</th>
-                        <th>*Phone number</th>
-                        <th>Address</th>
+                    <th>*Password</th>
+                        <th>*Confirm password</th>
                     </tr>
 
-                    <td><label for="first_name_id"></label>
-                        <input class="w3-round-large"
-                               maxlength="20"
-                               type="text"
-                               placeholder="Enter first name"
-                               name="firstName"
-                               id="first_name_id"
-                               required/><br></td>
-
-                    <td><label for="last_name_id"></label>
-                        <input class="w3-round-large"
-                               maxlength="20"
-                               type="text"
-                               placeholder="Enter last name"
-                               name="lastName"
-                               id="last_name_id"
-                               required/><br></td>
-
-                    <td><label for="date_of_birthday_id"></label>
-                        <input class="w3-round-large"
-                               type="date"
-                               min="1950-01-01"
-                               max="2003-01-01"
-                               name="dateOfBirthday"
-                               id="date_of_birthday_id"
-                               required/><br></td>
-
-                    <td><label for="phone_id"></label>
-                        <input class="w3-round-large"
-                               maxlength="13"
-                               type="tel"
-                               placeholder="Enter your phone"
-                               name="phone"
-                               id="phone_id"
-                        /><br></td>
-
-                    <td><label for="address_id"></label>
+                    <td><label for="psw_id"></label>
                         <input class="w3-round-large"
                                maxlength="100"
-                               type="text"
-                               placeholder="Enter city,street,No."
-                               name="address"
-                               id="address_id"
+                               minlength="8"
+                               type="password"
+                               placeholder="Enter password"
+                               name="password"
+                               id="psw_id"
                         /><br></td>
-                </table>
-                <br>
+                    <td><label for="psw_check_id"></label>
+                        <input class="w3-round-large"
+                               maxlength="100"
+                               minlength="8"
+                               type="password"
+                               placeholder="Confirm password"
+                               name="passwordCheck"
+                               id="psw_check_id"
+                        /><br></td>
 
+                </sec:authorize>
+
+            </table>
+            <br>
             <table>
                 <h1>Documents</h1><br>
                 <table style="font-size: 10px">
@@ -172,28 +243,39 @@
                         <th>*DRIVER LICENSE No.</th>
                     </tr>
 
-                <td><label for="passport_id"></label>
-                    <input class="w3-round-large"
-                           maxlength="9"
-                           type="text"
-                           name="passport"
-                           id="passport_id"
-                           required/><br></td>
+                    <td><label for="passport_id"></label>
+                        <input class="w3-round-large"
+                               width="350px"
+                               maxlength="9"
+                               type="text"
+                               name="passport"
+                               id="passport_id"
+                               required/><br></td>
 
                     <td><label for="driver_id"></label>
                         <input class="w3-round-large"
+                               width="350 px"
                                maxlength="9"
                                type="text"
                                name="driverLicense"
                                id="driver_id"
                                required/><br></td>
 
-            </table>
-                <button class="w3-btn w3-white w3-round-large" type="submit">Send on check</button><br>
-                </c:if>
+                </table>
+                <br>
+
+                <label> <input class="w3-round-large" type="checkbox" required/> I agree to the processing of personal
+                    data</label><br>
+
+                <button class="w3-btn w3-round-large w3-red" type="submit">Send</button>
+                <br>
+</c:if>
         </flex>
-    </form><br>
+    </form>
+    <br>
 </box>
+
+</c:if>
 <%@include file="footer.jsp" %>
 </body>
 </html>

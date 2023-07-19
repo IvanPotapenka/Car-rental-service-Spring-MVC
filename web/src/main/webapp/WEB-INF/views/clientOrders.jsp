@@ -73,7 +73,7 @@
           onclick="location.href='/account/profile'">
         <p style="font-size: 16px">
         <h4>&#128104;</h4>
-        <h6>${user.login}</h6>
+        <h6>${uzer.fullName} </h6>
     </flex>
     <flex class="w3-btn w3-border w3-round-large w3-padding" style="width: 100%"
           onclick="location.href='/account/orders'">
@@ -101,6 +101,7 @@
                 <th>Return date</th>
                 <th>Rental days</th>
                 <th>Price</th>
+                <th>Creator</th>
                 <th>Date of created</th>
                 <th>Status</th>
                 <th>Contract</th>
@@ -108,12 +109,13 @@
             <c:forEach var="rental" items="${rentals}">
                 <tr>
                     <td>${rental.id}</td>
-                    <td>${rental.carDto.brand} ${rental.carDto.model} No. ${rental.carDto.number}</td>
-                    <td>${rental.clientDto.firstName} ${rental.clientDto.lastName}</td>
+                    <td>${rental.carDto.brand} ${rental.carDto.model}</td>
+                    <td>${rental.userDto.fullName} </td>
                     <td>${rental.rentalDate}</td>
                     <td>${rental.returnDate}</td>
                     <td>${rental.rentalDays}</td>
                     <td>${rental.price}</td>
+                    <td>${rental.creator}</td>
                     <td>${rental.dateOfCreation}</td>
                     <td class="w3-text-red">${rental.status}</td>
 

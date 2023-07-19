@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 @ContextConfiguration(classes = DataBaseConfig.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Sql("classpath:insert-data-car.sql")
-@Sql("classpath:insert-data-client.sql")
+@Sql("classpath:insert-data-user.sql")
 @Sql(value = "classpath:insert-data-rental.sql")
 class RentalRepositoryTest {
     @Autowired
@@ -42,7 +42,7 @@ class RentalRepositoryTest {
     @Order(2)
     void whenFindAllOrdersByCarInvoked_ThenAllTheOrdersOfCarAreReturned() {
         Long id = 1L;
-        String[] actual = rentalRepository.findAllByCar_Id(id)
+        String[] actual = rentalRepository.findAllByCarId(id)
                 .stream()
                 .map(rental -> rental.getCar().getBrand())
                 .toArray(String[]::new);
@@ -56,11 +56,11 @@ class RentalRepositoryTest {
     @Order(3)
     void whenFindAllOrdersByClientInvoked_ThenAllTheOrdersOfClientAreReturned() {
         Long id = 2L;
-        String[] actual = rentalRepository.findAllByClientId(id)
+        String[] actual = rentalRepository.findAllByUserId(id)
                 .stream()
-                .map(rental -> rental.getClient().getFirstName())
+                .map(rental -> rental.getUser().getFullName())
                 .toArray(String[]::new);
-        String[] expected = List.of("Ivan", "Ivan", "Ivan")
+        String[] expected = List.of("Bob", "Bob", "Bob")
                 .toArray(String[]::new);
         assertArrayEquals(expected, actual);
     }

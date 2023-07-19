@@ -146,7 +146,7 @@
                         <th>Rental days</th>
                         <th>Price</th>
                         <th>Status</th>
-<%--                        <th>Creator rental</th>--%>
+                        <th>Creator rental</th>
                         <th>Date of creation</th>
                     </tr>
                             <td><label for="rental_days_id"></label>
@@ -170,12 +170,12 @@
                                        value="${rental.status}"
                                        readonly/><br></td>
 
-<%--                            <td><label for="creator_rental_id"></label>--%>
-<%--                                <input class="w3-round-large"--%>
-<%--                                       name="creator"--%>
-<%--                                       id="creator_rental_id"--%>
-<%--                                       value="${rental.client.user.role}"--%>
-<%--                                       readonly/><br></td>--%>
+                            <td><label for="creator_rental_id"></label>
+                                <input class="w3-round-large"
+                                       name="creator"
+                                       id="creator_rental_id"
+                                       value="${rental.creator}"
+                                       readonly/><br></td>
 
                             <td><label for="date_of_creation_id"></label>
                                 <input class="w3-round-large"
@@ -185,7 +185,7 @@
                                        readonly/><br></td>
                         </tr>
                 </table>
-                    <input hidden type="number" name="rental_id" value="${rental.id}"/><br>
+<%--                    <input hidden type="number" name="rental_id" value="${rental.id}"/><br>--%>
                 <br>
                     <button class="w3-btn w3-white w3-round-large" type="submit">Save</button>
                     </br>
@@ -194,7 +194,7 @@
             </c:if>
             <c:if test="${update_rental == true}">
                 <p class="w3-text-red"> Order No. ${rental.id} wasn't saved!</p>
-                <a href="/admin/rentals/rental" class="w3-text-blue">Try again</a></p>
+                <a href="/admin/rentals/rental/${rental.id}" class="w3-text-blue">Try again</a></p>
             </c:if><br>
         </flex>
     </form>
