@@ -32,8 +32,10 @@ import static by.potapenko.web.util.PathUtil.LOGIN_POST_ADMIN;
 import static by.potapenko.web.util.PathUtil.LOGOUT;
 import static by.potapenko.web.util.PathUtil.ORDER;
 import static by.potapenko.web.util.PathUtil.PREFIX;
+import static by.potapenko.web.util.PathUtil.QUICKLY_ORDER;
 import static by.potapenko.web.util.PathUtil.RECOVER;
 import static by.potapenko.web.util.PathUtil.REGISTRATION;
+import static by.potapenko.web.util.PathUtil.RESET_PASSWORD;
 import static by.potapenko.web.util.PathUtil.USER_ALL;
 
 
@@ -58,7 +60,7 @@ public class SecurityConfig {
                 .securityMatcher(USER_ALL)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(PREFIX, LOGIN, HOME, CATALOG,
-                                ORDER, BOOKING, BOOKING_ERROR, REGISTRATION, RECOVER)
+                                ORDER, BOOKING, BOOKING_ERROR, RESET_PASSWORD, QUICKLY_ORDER, REGISTRATION, RECOVER)
                         .permitAll()
                         .anyRequest()
                         .authenticated())
@@ -84,14 +86,15 @@ public class SecurityConfig {
                     .securityMatcher(ADMIN_ALL)
                     .authorizeHttpRequests(auth -> auth
                             .requestMatchers(PREFIX, ADMIN_LOGIN).permitAll()
-                            .anyRequest().hasAuthority(UserRole.ADMIN.getAuthority()))
+                            .anyRequest().hasAnyAuthority(UserRole.ADMIN.getAuthority(),
+                            UserRole.MANAGER.getAuthority()))
 
                     .formLogin(login -> login.loginPage(ADMIN_LOGIN)
                             .loginProcessingUrl(LOGIN_POST_ADMIN)
                             .defaultSuccessUrl(ADMIN)
                             .failureUrl(LOGIN_ADMIN_ERROR))
 
-                    .exceptionHandling(ex -> ex.accessDeniedPage(HOME))
+                    .exceptionHandling(ex -> ex.accessDeniedPage(ADMIN))
 
                     .logout(logout -> logout
                             .logoutUrl(LOGOUT)

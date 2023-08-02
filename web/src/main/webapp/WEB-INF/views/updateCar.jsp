@@ -84,6 +84,7 @@
                         <th>Model</th>
                         <th>Year of release</th>
                         <th>Color</th>
+                        <th>Type</th>
                         <th>Fuel</th>
                         <th>Engine, l</th>
                         <th>Horse power</th>
@@ -143,6 +144,25 @@
                             <option selected>${car.color}</option>
                         </select><br></td>
 
+                    <td><label for="type_id"></label>
+                        <select class="w3-round-large"
+                                id="type_id"
+                                name="type"
+                                required>
+                            <option value="">--Type car--</option>
+                            <option value="ECONOMIC">Economic</option>
+                            <option value="AVERAGE">Average</option>
+                            <option value="COMFORT">Comfort</option>
+                            <option value="BUSINESS">Business</option>
+                            <option value="PREMIUM">Premium</option>
+                            <option value="CABRIOLET">Cabriolet</option>
+                            <option value="JEEP">Jeep</option>
+                            <option value="MINIVAN">Minivan</option>
+                            <option value="ELECTRIC">Electric</option>
+                            <option value="LUKS">Luks</option>
+                            <option selected>${car.type}</option>
+                        </select><br></td>
+
                     <td><label for="fuel_id"></label>
                         <select class="w3-round-large"
                                 id="fuel_id"
@@ -198,6 +218,7 @@
                         <th>VIN code</th>
                         <th>Car number</th>
                         <th>Price,$</th>
+                        <th>Status</th>
                     </tr>
 
                     <td><label for="consumption_id"></label>
@@ -276,6 +297,33 @@
                                id="price"
                                value="${car.price}"
                                required/><br></td>
+                    <td><label for="status_id"></label>
+                        <select class="w3-round-large"
+                                id="status_id"
+                                name="status"
+                                required>
+                            <option style="color: red" value="FREE">FREE</option>
+                            <option style="color: greenyellow" value="BOOKED">BOOKED</option>
+                            <option style="color: red" value="BUSY">BUSY</option>
+                            <option selected>
+                                <c:if test="${car.status=='FREE'}">
+                                    <p style="color: greenyellow"> ${car.status}</p>
+                                </c:if>
+                                <c:if test="${car.status=='BOOKED'}">
+                                    <p style="color: yellow"> ${car.status}</p>
+                                </c:if>
+                                <c:if test="${car.status=='BUSY'}">
+                                    <p style="color: red"> ${car.status}</p>
+                                </c:if>
+                            </option>
+                        </select><br></td>
+
+
+
+
+
+
+
                 </table>
                 <input hidden type="number" name="car_id" value="${car.id}"/><br>
                 <button class="w3-btn w3-white w3-round-large" type="submit">Save</button>

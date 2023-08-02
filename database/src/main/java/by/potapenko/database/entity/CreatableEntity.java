@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 public abstract class CreatableEntity<T extends Serializable> implements BaseIdEntity<T> {
     @CreationTimestamp
-    @Column(name = "date_of_creation", nullable = false)
+    @Column(name = "date_of_creation", nullable = false, length = 16)
     private LocalDateTime dateOfCreation;
 
 }

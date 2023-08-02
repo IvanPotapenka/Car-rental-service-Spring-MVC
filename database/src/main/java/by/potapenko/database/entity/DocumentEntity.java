@@ -1,7 +1,10 @@
 package by.potapenko.database.entity;
 
+import by.potapenko.database.entity.enam.DocumentStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,6 +37,11 @@ public class DocumentEntity implements BaseIdEntity<Long> {
 
     @Column(name = "driver_license_No", nullable = false)
     private String driverLicense;
+
+    @Builder.Default
+    @Column(name = "status_check", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private DocumentStatus statusCheck = DocumentStatus.CONFIRMED;
 
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")

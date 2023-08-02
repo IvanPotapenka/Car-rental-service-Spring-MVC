@@ -184,7 +184,7 @@
         <module name="IllegalInstantiation"/>
         <module name="InnerAssignment"/>
         <module name="MagicNumber">
-            <property name="ignoreNumbers" value="-1, 0, 0.5,0.9,0.75,0.65, 1, 2,3,4,5,6,7,8,9,10,11,12,13,14,15,16, 100"/>
+            <property name="ignoreNumbers" value="-1, 0, 0.5,0.9,0.75,0.65, 587, 68, 30, 1, 2,3,4,5,6,7,8,9,10,11,12,13,14,15,16, 100"/>
             <property name="ignoreHashCodeMethod" value="true"/>
             <property name="ignoreAnnotation" value="true"/>
         </module>

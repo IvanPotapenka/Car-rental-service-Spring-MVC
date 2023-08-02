@@ -16,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href=
             "https://unpkg.com/@primer/css@^18.0.0/dist/primer.css"/>
-    <title>Client orders</title>
+    <title>User orders</title>
     <style>
         table {
             border-collapse: collapse;
@@ -62,16 +62,16 @@
 </head>
 <body>
 <%@include file="headerAdmin.jsp" %>
-<div><a href="/admin">Home </a><a href="/admin/rentals">/ rentals </a>/ client orders</div>
+<div><a href="/admin">Home </a><a href="/admin/rentals">/ rentals </a>/ user orders</div>
 <box>
     <form method="post" class="w3-card-4 w3-blue-grey w3-round-large w3-padding" style="width: 90%">
         <flex>
             <p style="font-size: 16px">
-            <h1>Rentals of client</h1>
+            <h1>Orders of user</h1>
             <table style="font-size: 10px">
                 <tr>
                     <th>Order No.</th>
-                    <th>Client</th>
+                    <th>user</th>
                     <th>Car</th>
                     <th>Rental date</th>
                     <th>Return date</th>
@@ -85,13 +85,29 @@
                 <c:forEach var="rental" items="${rentals}">
                     <tr>
                         <td>${rental.id}</td>
-                        <td>${rental.clientDto.firstName} ${rental.clientDto.lastName}</td>
+                        <td>${rental.userDto.fullName}</td>
                         <td>${rental.carDto.brand} ${rental.carDto.model} No. ${rental.carDto.number}</td>
                         <td>${rental.rentalDate}</td>
                         <td>${rental.returnDate}</td>
                         <td>${rental.rentalDays}</td>
                         <td>${rental.price}</td>
-                        <td><p style="color: crimson"> ${rental.status}</p></td>
+                        <td>
+                            <c:if test="${rental.status=='CHECK'}">
+                                <p style="color: red"> ${rental.status}</p>
+                            </c:if>
+                            <c:if test="${rental.status=='PROCESSING'}">
+                                <p style="color: yellow"> ${rental.status}</p>
+                            </c:if>
+                            <c:if test="${rental.status=='REFUSED'}">
+                                <p style="color: red"> ${rental.status}</p>
+                            </c:if>
+                            <c:if test="${rental.status=='CLOSED'}">
+                                <p style="color: white"> ${rental.status}</p>
+                            </c:if>
+                            <c:if test="${rental.status=='APPROVE'}">
+                                <p style="color: greenyellow"> ${rental.status}</p>
+                            </c:if>
+                        </td>
                         <td>${rental.creator}</td>
                         <td>${rental.dateOfCreation}</td>
 

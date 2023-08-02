@@ -1,6 +1,7 @@
 package by.potapenko.database.entity;
 
-import by.potapenko.database.entity.enam.Status;
+import by.potapenko.database.entity.enam.OrderState;
+import by.potapenko.database.entity.enam.OrderStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -47,7 +48,12 @@ public class RentalEntity extends CreatableEntity<Long> {
     @Builder.Default
     @Enumerated(EnumType.STRING)
     @Column(name = "status", length = 10, nullable = false)
-    private Status status = Status.CHECK;
+    private OrderStatus status = OrderStatus.CHECK;
+
+    @Builder.Default
+    @Enumerated(EnumType.STRING)
+    @Column(name = "state", length = 10, nullable = false)
+    private OrderState state = OrderState.PASSIVE;
 
     @Column(name = "creator", length = 30, nullable = false)
     private String creator;

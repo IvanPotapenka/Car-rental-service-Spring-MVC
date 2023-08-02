@@ -1,6 +1,5 @@
 package by.potapenko.service;
 
-import by.potapenko.database.dto.LoginDto;
 import by.potapenko.database.dto.UserCreationDto;
 import by.potapenko.database.dto.UserDto;
 import by.potapenko.database.dto.UserPresentDto;
@@ -44,18 +43,18 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public List<UserDto> getByRoleUser() {
+    public List<UserPresentDto> getByRoleUser() {
         return userRepository.findByRole(UserRole.USER)
                 .stream()
-                .map(this::convertToUserDto)
+                .map(this::convertToUserPresentDto)
                 .toList();
     }
 
     @Transactional(readOnly = true)
-    public List<UserDto> getByRoleManager() {
+    public List<UserPresentDto> getByRoleManager() {
         return userRepository.findByRole(UserRole.MANAGER)
                 .stream()
-                .map(this::convertToUserDto)
+                .map(this::convertToUserPresentDto)
                 .toList();
     }
 
@@ -80,14 +79,25 @@ public class UserService {
         return Optional.empty();
     }
 
-    @Transactional(readOnly = true)
-    public Optional<UserDto> findByEmailAndPassword(LoginDto login) {
-        Optional<UserEntity> user = userRepository.findByContactEmailAndPassword(login.email(), login.password());
+    public void updateResetPasswordToken(String token, String email) {
+        Optional<UserEntity> user = userRepository.findByContactEmail(email);
         if (user.isPresent()) {
             UserEntity userEntity = user.get();
-            return Optional.of(convertToUserDto(userEntity));
+            userEntity.setResetPasswordToken(token);
+            userRepository.save(userEntity);
         }
-        return Optional.empty();
+    }
+
+    @Transactional(readOnly = true)
+    public List<UserEntity> getByResetPasswordToken(String token) {
+        return userRepository.findByResetPasswordToken(token);
+    }
+
+    public void updatePassword(String password, String token) {
+        UserEntity user = userRepository.findByResetPasswordToken(token).stream().findFirst().get();
+        user.setPassword(passwordEncoder.encode(password));
+        user.setResetPasswordToken(null);
+        userRepository.save(user);
     }
 
     public Integer getCount(Double limit) {

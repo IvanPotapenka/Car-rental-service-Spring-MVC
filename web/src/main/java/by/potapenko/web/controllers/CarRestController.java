@@ -29,7 +29,7 @@ public class CarRestController {
     @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER')")
     @GetMapping
     public ResponseEntity<List<CarDto>> getAll() {
-        return ResponseEntity.ok(carService.getAll());
+        return ResponseEntity.ok(carService.getAllSortByPriceAsc());
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER')")

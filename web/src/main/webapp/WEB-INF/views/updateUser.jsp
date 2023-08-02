@@ -8,7 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="header.jsp" %>
+<%@include file="headerAdmin.jsp" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -68,7 +68,7 @@
                        type="text"
                        maxlength="20"
                        placeholder="Enter your login"
-                       name="fullNAme"
+                       name="fullName"
                        value="${uzer.fullName}"
                        id="fullNameId"
                        required/><br>
@@ -91,6 +91,25 @@
                        name="phone"
                        value="${uzer.phone}"
                        id="phone"
+                       required/><br>
+
+                <label for="date">Date of birthday</label>
+                <input class="w3-round-large"
+                       readonly
+                       type="date"
+                       name="dateOfBirthday"
+                       value="${uzer.dateOfBirthday}"
+                       id="date"
+                       required/><br>
+
+                <label for="address">Address</label>
+                <input class="w3-round-large"
+                       type="text"
+                       maxlength="100"
+                       placeholder="Enter your address"
+                       name="address"
+                       value="${uzer.address}"
+                       id="address"
                        required/><br>
 
                 <label for="role">Role</label>
@@ -116,7 +135,7 @@
             <c:if test="${update_user == false}">
                 <p style="font-size: 20px" class="w3-text-red"> User wasn't updated!Try again later!</p>
 
-                <p style="font-size: 16px"><a href="/admin/users/user/update_user/${uzer.id}">Back</a></p>
+            <p style="font-size: 16px"><button class="w3-btn w3-round-large" onclick="history.go(-1);">Back</button></p>
             </c:if><br>
         </flex>
     </form>

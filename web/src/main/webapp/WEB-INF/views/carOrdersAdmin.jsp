@@ -67,7 +67,7 @@
     <form method="post" class="w3-card-4 w3-blue-grey w3-round-large w3-padding" style="width: 90%">
         <flex>
             <p style="font-size: 16px">
-            <h1>Rentals of car</h1>
+            <h1>Orders of car</h1>
             <table style="font-size: 10px">
                 <tr>
                     <th>Order No.</th>
@@ -80,6 +80,7 @@
                     <th>Status</th>
                     <th>Creator rental</th>
                     <th>Date of creation</th>
+                    <th>State</th>
                     <th>Edit</th>
                 </tr>
                 <c:forEach var="rental" items="${rentals}">
@@ -91,9 +92,39 @@
                         <td>${rental.returnDate}</td>
                         <td>${rental.rentalDays}</td>
                         <td>${rental.price}</td>
-                        <td><p style="color: crimson">${rental.status}</p> </td>
+                        <td>
+                            <c:if test="${rental.status=='CHECK'}">
+                                <p style="color: red"> ${rental.status}</p>
+                            </c:if>
+                            <c:if test="${rental.status=='PROCESSING'}">
+                                <p style="color: yellow"> ${rental.status}</p>
+                            </c:if>
+                            <c:if test="${rental.status=='REFUSED'}">
+                                <p style="color: red"> ${rental.status}</p>
+                            </c:if>
+                            <c:if test="${rental.status=='CLOSED'}">
+                                <p style="color: white"> ${rental.status}</p>
+                            </c:if>
+                            <c:if test="${rental.status=='APPROVE'}">
+                                <p style="color: greenyellow"> ${rental.status}</p>
+                            </c:if>
+                        </td>
                         <td>${rental.creator} </td>
                         <td>${rental.dateOfCreation}</td>
+                        <td>
+                            <c:if test="${rental.state=='ACTIVE'}">
+                                <p style="color: greenyellow"> ${rental.state}</p>
+                            </c:if>
+                            <c:if test="${rental.state=='PASSIVE'}">
+                                <p style="color: white"> ${rental.state}</p>
+                            </c:if>
+                            <c:if test="${rental.state=='COMPLETE'}">
+                                <p style="color: greenyellow"> ${rental.state}</p>
+                            </c:if>
+                            <c:if test="${rental.state=='REFUSED'}">
+                                <p style="color: red"> ${rental.state}</p>
+                            </c:if>
+                        </td>
 
                         <td><a href="${pageContext.request.contextPath}/admin/rentals/rental/${rental.id}"
                                class="w3-text-blue">EDIT</a></td>

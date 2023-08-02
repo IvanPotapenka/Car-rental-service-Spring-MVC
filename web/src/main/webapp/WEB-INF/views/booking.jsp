@@ -18,6 +18,8 @@
     <link rel="shortcut icon" type="image/x-icon"
           href="https://e7.pngegg.com/pngimages/330/810/png-clipart-car-dealership-graphics-sports-car-computer-icons-car-blue-driving.png">
     <style>
+
+
         table {
             border-collapse: collapse;
             width: 100%;
@@ -40,6 +42,14 @@
             margin-top: 50px;
         }
 
+        box1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 100px;
+            padding-bottom: 300px;
+        }
+
         flex {
             display: flex;
             flex-direction: column;
@@ -50,6 +60,17 @@
             padding-top: 80px;
             padding-left: 20px;
         }
+
+
+        div2 {
+            margin-top: 20px;
+            width: 100%;
+        }
+        div3 {
+
+            margin-left: 10px;
+        }
+
 
         select {
             padding: 10px;
@@ -71,7 +92,9 @@
             align-items: flex-start;
             margin-left: 10px;
         }
+
     </style>
+
 </head>
 
 <body>
@@ -83,6 +106,23 @@
 <%--    <p class="w3-text-red"> Such a user already exists!</p>--%>
 <%--    <p><a href="/login" class="w3-text-blue">Please log in</a></p>--%>
 <%--</c:if>--%>
+<c:if test="${car_status_error == true}">
+
+    <box1>
+        <flex class="w3-card-4 w3-round-large w3-padding" style="width: 40%">
+            <p style="font-size: 24px; color: red">Sorry this car has status:</p>
+                <c:if test="${car.status == 'BOOKED'}">
+                    <p class="w3-btn w3-round-large w3-yellow" href="/booking/${car.id}">${car.status}</p>
+                </c:if>
+                <c:if test="${car.status == 'BUSY'}">
+                    <p class="w3-btn w3-round-large w3-red">${car.status}</p>
+                </c:if></p>
+            <figure class="mb-0"><img src="${car.image}" alt="${car.brand} ${car.model}"></figure>
+            <button class="w3-btn w3-round-large w3-red"> <a href="/catalog">Select another car from catalog</a></button>
+        </flex>
+    </box1>
+
+</c:if>
 
 <c:if test="${car_not_found == true}">
     <flex class="w3-container w3-padding">
@@ -94,15 +134,30 @@
     </flex>
 </c:if>
 
-
+<c:if test="${car_status_error == null}">
 <c:if test="${car_not_found == null}">
-<c:if test="${create_client == null}">
 
 <p class="w3-container w3-padding w3-margin"></p>
 <box><p style="font-size: 60px" class="w3-text-red">Booking</p>
 
     <box class="w3-card-4 w3-round-large w3-padding" style="width: 60%">
-        <h2><a href=${pageContext.request.contextPath}/cars?id=${car.id}
+
+        <div2>
+            <div3>
+                <c:if test="${car.status == 'FREE'}">
+                    <p class="w3-btn w3-round-large w3-green">${car.status}</p>
+                </c:if>
+                <c:if test="${car.status == 'BOOKED'}">
+                    <p class="w3-btn w3-round-large w3-yellow">${car.status}</p>
+                </c:if>
+                <c:if test="${car.status == 'BUSY'}">
+                    <p class="w3-btn w3-round-large w3-red">${car.status}</p>
+                </c:if>
+
+            </div3>
+        </div2>
+
+        <h2><a href=${pageContext.request.contextPath}/car/${car.id}
                class="w3-text-blue"> ${car.brand} ${car.model} ${car.year}</a></h2>
         <figure class="mb-0"><img src="${car.image}" alt="${car.brand} ${car.model}"></figure>
 
@@ -116,12 +171,28 @@
                     <th> <span style="font-size: 10px">Rental date </span></th>
                     <th> <span style="font-size: 10px">Return date:</span></th>
                     <th> <span style="font-size: 10px">Rental days</span></th>
+                    <th> <span style="font-size: 10px">Price for day</span></th>
+                    <th> <span style="font-size: 10px">Discount</span></th>
                     <th> <span style="font-size: 10px">Total price </span></th>
                 </tr>
                 <tr>
                     <th style="font-size: 16px"><span style="color: crimson" aria-flowto=""> ${rental.rentalDate} at 12.00 PM</span></th>
                     <th style="font-size: 16px"><span style="color: crimson" aria-flowto=""> ${rental.rentalDate} at 12.00 PM</span></th>
                     <th style="font-size: 16px"><span style="color: crimson" aria-flowto=""> ${rental.rentalDays}</span></th>
+                    <th style="font-size: 16px"><span style="color: crimson" aria-flowto=""> ${rental.carDto.price}</span></th>
+                    <c:if test="${rental.rentalDays <= 3}">
+                        <th style="font-size: 16px"><span style="color: crimson" aria-flowto="">0 %</span></th>
+                    </c:if>
+                    <c:if test="${rental.rentalDays >= 4 && rental.rentalDays <= 7}">
+                        <th style="font-size: 16px"><span style="color: crimson" aria-flowto="">10 %</span></th>
+                    </c:if>
+                    <c:if test="${rental.rentalDays >= 8 && rental.rentalDays <= 15}">
+                        <th style="font-size: 16px"><span style="color: crimson" aria-flowto="">25 %</span></th>
+                    </c:if>
+                    <c:if test="${rental.rentalDays > 16}">
+                        <th style="font-size: 16px"><span style="color: crimson" aria-flowto="">35 %</span></th>
+                    </c:if>
+
                     <th style="font-size: 16px"><span style="color: crimson" aria-flowto=""> ${rental.price}$</span></th>
                 </tr>
             </table>
@@ -186,7 +257,7 @@
 
                 <td><label for="email_id"></label>
                     <input class="w3-round-large"
-                           maxlength="13"
+                           maxlength="50"
                            type="email"
                            placeholder="Enter your email"
                            name="email"
@@ -263,8 +334,7 @@
 
                 </table>
                 <br>
-
-                <label> <input class="w3-round-large" type="checkbox" required/> I agree to the processing of personal
+                <label> <input class="w3-round-large" name="agreement" type="checkbox" checked required/> I agree to the processing of personal
                     data</label><br>
 
                 <button class="w3-btn w3-round-large w3-red" type="submit">Send</button>
@@ -274,7 +344,6 @@
     </form>
     <br>
 </box>
-
 </c:if>
 <%@include file="footer.jsp" %>
 </body>

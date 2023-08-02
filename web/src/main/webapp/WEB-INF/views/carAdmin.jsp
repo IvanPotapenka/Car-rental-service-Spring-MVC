@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -73,18 +74,19 @@
                         <th>Model</th>
                         <th>Year of release</th>
                         <th>Color</th>
+                        <th>Type</th>
                         <th>Fuel</th>
                         <th>Engine, l</th>
-                        <th>Horse power</th>
                         <th>Transmission</th>
                         <th>Consumption 100 km</th>
-                        <th>Places</th>
-                        <th>Doors</th>
-                        <th>Trunk, l</th>
                         <th>VIN code</th>
                         <th>Number</th>
+                        <th>Status</th>
+                        <th>State check</th>
                         <th>Price, $</th>
+                        <sec:authorize access="hasAuthority('ADMIN')">
                         <th>Delete</th>
+                        </sec:authorize>
                         <th>Edit</th>
                     </tr>
                     <tr>
@@ -93,18 +95,43 @@
                         <td>${car.model}</td>
                         <td>${car.year}</td>
                         <td>${car.color}</td>
+                        <td>${car.type}</td>
                         <td>${car.fuelType}</td>
                         <td>${car.engineCapacity}</td>
-                        <td>${car.horsePower}</td>
                         <td>${car.transmission}</td>
                         <td>${car.fuelConsumption}</td>
-                        <td>${car.placeQuantity}</td>
-                        <td>${car.doorQuantity}</td>
-                        <td>${car.trunkVolume}</td>
                         <td>${car.vinCode}</td>
                         <td>${car.number}</td>
+                        <td>
+                            <c:if test="${car.status=='FREE'}">
+                                <p style="color: greenyellow"> ${car.status}</p>
+                            </c:if>
+                            <c:if test="${car.status=='BOOKED'}">
+                                <p style="color: yellow"> ${car.status}</p>
+                            </c:if>
+                            <c:if test="${car.status=='BUSY'}">
+                                <p style="color: red"> ${car.status}</p>
+                            </c:if>
+                        </td>
+                        <td>
+                            <c:if test="${car.stateCheck=='READY'}">
+                                <p style="color: greenyellow"> ${car.stateCheck}</p>
+                            </c:if>
+                            <c:if test="${car.stateCheck=='REPAIR'}">
+                                <p style="color: yellow"> ${car.stateCheck}</p>
+                            </c:if>
+                            <c:if test="${car.stateCheck=='NOT_READY'}">
+                                <p style="color: red"> ${car.stateCheck}</p>
+                            </c:if>
+
+                        </td>
                         <td>${car.price}</td>
+
+                        <sec:authorize access="hasAuthority('ADMIN')">
+
                         <td><b><a href="/admin/cars/car/delete_car/${car.id}" class="w3-text-red">DELETE</a></b></td>
+                        </sec:authorize>
+
                         <td><b><a href="/admin/cars/car/update_car/${car.id}" class="w3-text-blue">EDITE</a></b></td>
                     </tr>
                 </table>

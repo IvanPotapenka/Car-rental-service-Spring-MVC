@@ -56,6 +56,13 @@
             flex-direction: column;
             align-items: center;
         }
+        .head{
+            flex-direction: row;
+            margin-right: 3%;
+            padding-top: 20px;
+            margin-left: 4%;
+            height: 60px;
+        }
 
         div {
             padding-top: 80px;
@@ -80,6 +87,36 @@
 
 <%@include file="headerAdmin.jsp" %>
 <div><a href="/admin">Home </a>/ create new rental</div>
+
+<div class="head">
+
+    <form style="margin-left: 75%; margin-top: 1px; margin-bottom: 2%">
+        <input style="border: 1px solid lightslategray; border-radius: 5px" type="text" name=text" class="search" placeholder="">
+        <input class="w3-btn w3-round-large w3-border w3-tiny w3-white w3-padding w3-margin-left" type="submit" name="submit" class="submit" value="Search">
+    </form>
+
+    <a  style="font-size: 12px; font-weight: bold">Status order:</a>
+    <a href="/admin/rentals?status=CHECK" style="font-size: 14px" class="w3-btn w3-round-large w3-tiny w3-white w3-padding w3-margin-right">Check</a>
+    <a href="/admin/rentals?status=PROCESSING"style="font-size: 14px" class="w3-btn w3-round-large w3-tiny w3-white w3-padding w3-margin-right">Processing</a>
+    <a href="/admin/rentals?status=REFUSED"style="font-size: 14px" class="w3-btn w3-round-large w3-tiny w3-white w3-padding w3-margin-right">Refused</a>
+    <a href="/admin/rentals?status=APPROVE" style="font-size: 14px" class="w3-btn w3-round-large w3-tiny w3-white w3-padding w3-margin-right">Approve</a>
+    <a  style="font-size: 12px; font-weight: bold">State order:</a>
+    <a href="/admin/rentals?state=ACTIVE" style="font-size: 14px" class="w3-btn w3-round-large w3-tiny w3-white w3-padding w3-margin-right">Active</a>
+    <a href="/admin/rentals?state=PASSIVE"style="font-size: 14px" class="w3-btn w3-round-large w3-tiny w3-white w3-padding w3-margin-right">Passive</a>
+    <a href="/admin/rentals?state=REFUSED"style="font-size: 14px" class="w3-btn w3-round-large w3-tiny w3-white w3-padding w3-margin-right">Refused</a>
+    <a href="/admin/rentals?state=COMPLETE" style="font-size: 14px" class="w3-btn w3-round-large w3-tiny w3-white w3-padding w3-margin-right">Complete</a>
+    <a  style="font-size: 14px" class="w3-btn w3-round-large w3-tiny w3-white w3-padding w3-margin-right"></a>
+    <a style="font-size: 14px" class="w3-btn w3-round-large w3-tiny w3-white w3-padding w3-margin-right"></a>
+    <a style="font-size: 14px" class="w3-btn w3-round-large w3-tiny w3-white w3-padding w3-margin-right"></a>
+    <a  style="font-size: 12px; font-weight: bold">Sort:</a>
+    <a href="/admin/rentals?sort=ASC" style="font-size: 14px" class="w3-btn w3-round-large w3-tiny w3-white w3-padding 3-margin-right">Sort by id</a>
+    <a href="/admin/rentals?sort=DESC" style="font-size: 14px" class="w3-btn w3-round-large w3-tiny w3-white w3-padding w3-margin-right">Sort by date</a>
+
+
+
+
+    <%--    <a href="/catalog?brand=Ford" style="font-size: 14px" class="w3-btn w3-round-large w3-tiny w3-white w3-padding w3-margin-right">FORD</a>--%>
+    <%--    <a href="/catalog?brand=Renault" style="font-size: 14px" class="w3-btn w3-round-large w3-tiny w3-white w3-padding w3-margin-right">RENAULT</a>--%>
 <box>
     <form method="post" class="w3-card-4 w3-blue-grey w3-round-large w3-padding" style="width: 90%">
         <flex>
@@ -107,8 +144,8 @@
                        <script>
                            $( function() {
                                var availableTags = []
-                               <c:forEach var="client" items="${clients}">
-                               availableTags.push("${client.firstName} ${client.lastName}")
+                               <c:forEach var="uzer" items="${users}">
+                               availableTags.push("${uzer.fullName}")
                                 </c:forEach>
                                $( "#search" ).autocomplete({
                                    source: availableTags

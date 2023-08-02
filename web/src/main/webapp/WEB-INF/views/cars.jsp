@@ -68,7 +68,7 @@
             </c:if>
             <c:if test="${car_delete_success==null}">
 
-            <h1>List cars</h1>
+            <h1>Cars</h1>
             <table style="font-size: 10px">
                 <tr>
                     <th>Car_id</th>
@@ -80,12 +80,12 @@
                     <th>Engine, l</th>
                     <th>Horse power</th>
                     <th>Transmission</th>
-<%--                    <th>Consumption 100 km</th>--%>
                     <th>Places</th>
                     <th>Doors</th>
                     <th>Trunk, l</th>
                     <th>VIN code</th>
                     <th>Number</th>
+                    <th>Status</th>
                     <th>Price, $</th>
                     <th>Edit</th>
                 </tr>
@@ -100,12 +100,22 @@
                         <td>${car.engineCapacity}</td>
                         <td>${car.horsePower}</td>
                         <td>${car.transmission}</td>
-<%--                        <td>${car.fuelConsumption}</td>--%>
                         <td>${car.placeQuantity}</td>
                         <td>${car.doorQuantity}</td>
                         <td>${car.trunkVolume}</td>
                         <td>${car.vinCode}</td>
                         <td>${car.number}</td>
+                        <td>
+                            <c:if test="${car.status=='FREE'}">
+                            <p style="color: greenyellow"> ${car.status}</p>
+                            </c:if>
+                            <c:if test="${car.status=='BOOKED'}">
+                                <p style="color: yellow"> ${car.status}</p>
+                            </c:if>
+                            <c:if test="${car.status=='BUSY'}">
+                                <p style="color: red"> ${car.status}</p>
+                            </c:if>
+                            </td>
                         <td>${car.price}</td>
                         <td><b><a href="${pageContext.request.contextPath}/admin/cars/car/${car.id}"
                                   class="w3-text-blue">EDIT</a></b></td>

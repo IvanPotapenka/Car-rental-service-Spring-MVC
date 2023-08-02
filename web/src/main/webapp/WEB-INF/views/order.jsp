@@ -40,7 +40,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 50px;
+            margin-top: 20px;
         }
 
         flex {
@@ -53,6 +53,15 @@
         div {
             padding-top: 80px;
             padding-left: 20px;
+        }
+
+        div2 {
+            margin-top: 20px;
+            width: 100%;
+        }
+        div3 {
+
+            margin-left: 10px;
         }
 
         nav1 {
@@ -71,7 +80,9 @@
 
         .inp {
             display: flex;
+            padding-left: 2%;
         }
+
     </style>
 </head>
 
@@ -93,12 +104,29 @@
 
 <c:if test="${car_not_found == null}">
 <box>
-    <box class="w3-card-4 w3-round-large w3-padding" style="width: 50%">
+    <box class="w3-card-4 w3-round-large w3-padding" style="width: 40%">
+
+        <div2>
+            <div3>
+                <c:if test="${car.status == 'FREE'}">
+                    <p class="w3-btn w3-round-large w3-green">${car.status}</p>
+                </c:if>
+                <c:if test="${car.status == 'BOOKED'}">
+                    <p class="w3-btn w3-round-large w3-yellow">${car.status}</p>
+                </c:if>
+                <c:if test="${car.status == 'BUSY'}">
+                    <p class="w3-btn w3-round-large w3-red">${car.status}</p>
+                </c:if>
+
+            </div3>
+        </div2>
+
+
         <h2><a href=${pageContext.request.contextPath}/catalog/car/${car.id}
  class="w3-text-blue"> ${car.brand} ${car.model} ${car.year}</a></h2>
-        <figure class="mb-0"><img src="${car.image}" alt="">${car.brand} ${car.model}</figure>
+        <figure class="mb-0"><img width="400" height="285" src="${car.image}"></figure>
         <h6> &#9989; ${car.placeQuantity} places &#9989; ${car.transmission}
-            &#9989;${car.doorQuantity} doors &#9989;${car.fuelType}</h6><br>
+            &#9989;${car.doorQuantity} doors &#9989;${car.fuelType}</h6>
         <table>
             <tr>
                 <td><span style="font-size: 12px">Color</span></td>
@@ -115,9 +143,9 @@
                 <td> ${car.fuelType}</td>
             </tr>
         </table>
-        <br>
+
         <table>
-            <p style="font-size: 18px">The cost of booking</p>
+            <p style="font-size: 18px">Price</p>
             <tr>
                 <th><span style="font-size: 10px">1-3 days </span></th>
                 <th><span style="font-size: 10px">4-7 days </span></th>
@@ -164,11 +192,9 @@
                        name="returnDate"
                        id="return_date_id"
                        required/><br>
-
-                <input hidden name="price" value="${car.price}"/>
                                 <input hidden name="carId" value="${car.id}"/>
             </div>
-            <button class="w3-btn w3-round-large w3-right w3-red w3-padding">Booking
+            <button  class="w3-btn w3-round-large w3-red" style="width: 70%; margin-left: 15%" >Booking
             </button>
         </form>
         <br>

@@ -74,13 +74,11 @@
             position: relative;
         }
         .submenu {
-            /*background: cadetblue;*/
-            /*border-radius: 5px;*/
             position: absolute;
             left: 0;
             top: 100%;
             z-index: 5;
-            width: 1px;
+            width: 100px;
             opacity: 0;
             transform: scaleY(0);
             transform-origin: 0 0;
@@ -100,9 +98,10 @@
 <body>
 
 <nav>
-    <div class="w3-container w3-blue-grey">
-        <button class="w3-text-blue" style="text-shadow:1px 1px 0 #444" onclick="location.href='/'">
-            <h2>Car-rental-service</h2></button>
+
+    <div class="w3-container w3-blue-grey";  style="height: 65px;">
+            <p style="font-size: 24px;color: white;position: absolute; font-weight: bold">Car rental service</p>
+
         <sec:authorize access="!isAuthenticated()">
             <button class="w3-btn  w3-round-large w3-right  " style="text-shadow:1px 1px 0 #444"
                     onclick="location.href='/login'">Sing in
@@ -134,10 +133,20 @@
         <button class="w3-btn  w3-round-large w3-right" style="text-shadow:1px 1px 0 #444"
                 onclick="location.href='/'">Home
         </button>
+
     </div>
 </nav>
         <div>
- <img src="https://drivedrom.ru/wp-content/uploads/gde-vzyat-avtomobil-v-arendu-.jpg" >
+            <div  style="position: absolute; margin-top: 20%; margin-left: 10%">
+                <p style="font-size: 30px; font-weight: bold; color:white;">Car rental in Minsk<p>
+                <p style="font-size:  18px;color:white;">We meet you from the airport and at the train station<p>
+                <p style="font-size: 18px; color:white;">when booking any car from 1 day.<p>
+                <p style="font-size: 18px; color:white;">120+ cars in the fleet</p>
+                <p style="font-size: 18px; color:white;">Premium, sports, business, comfort, economy.</p>
+            <a href="/catalog" class="w3-btn w3-yellow w3-round-large" style="margin-left: 40%; margin-top: 2%" type="button">Сhoose a car</a></div>
+
+            <img src="https://drivedrom.ru/wp-content/uploads/gde-vzyat-avtomobil-v-arendu-.jpg" >
+
         </div>
         <div class="w3-container w3-blue-grey  w3-padding">
             <footer class="footer-distributed">

@@ -32,7 +32,7 @@ class RentalRepositoryTest {
                 .stream()
                 .map(rental -> rental.getStatus().name())
                 .toArray(String[]::new);
-        String[] expected = List.of("REJECTED", "CHECK", "ALLOWED")
+        String[] expected = List.of("REFUSED", "CHECK", "APPROVE")
                 .toArray(String[]::new);
         assertArrayEquals(expected, actual);
     }

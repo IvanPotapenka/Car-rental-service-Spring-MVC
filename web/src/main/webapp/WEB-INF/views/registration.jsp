@@ -35,6 +35,16 @@
             padding-left: 20px;
         }
     </style>
+
+<%--    <script>--%>
+<%--        function checkPasswordMatch(fieldConfirmPassword) {--%>
+<%--            if (fieldConfirmPassword.value != $("#password").val()) {--%>
+<%--                fieldConfirmPassword.setCustomValidity("Passwords do not match!");--%>
+<%--            } else {--%>
+<%--                fieldConfirmPassword.setCustomValidity("");--%>
+<%--            }--%>
+<%--        }--%>
+<%--    </script>--%>
 </head>
 <body>
 <div><a href="/">Home </a><a href="${pageContext.request.contextPath}/login">/ login</a>/ registration</div>
@@ -75,26 +85,24 @@
                    name="phone"
                    id="phone_id"
                    required/></p>
-            <c:if test="${password_error == true}">
-                <p class="w3-text-red"> Passwords don't match </p>
-            </c:if>
-            <label for="pwd">Password</label>
+
+
+            <label for="password">Password</label>
             <input class="w3-round-large"
                    maxlength="20"
                    type="password"
                    placeholder="Enter your password"
                    name="password"
-                   id="pwd"
+                   id="password"
                    required/>
 
-            <label for="pwd_check_id">Confirm password</label>
+            <label for="password">Confirm password</label>
             <input class="w3-round-large"
                    maxlength="20"
                    minlength="8"
                    type="password"
-                   name="passwordCheck"
-                   id="pwd_check_id"
                    required/><br>
+
             <button class="w3-btn w3-white w3-round-large" type="submit">Registration</button>
             </br>
             <p style="font-size: 12px">If you are already registered,</p>
