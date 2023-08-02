@@ -1,5 +1,6 @@
 package by.potapenko.database.dto;
 
+import by.potapenko.database.entity.enam.UserRole;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -12,7 +13,11 @@ public class UserCreationDto {
     private String phone;
     private String address;
     private String passport;
+    private UserRole role;
     private String driverLicense;
     private LocalDate dateOfBirthday;
     private String password;
+    private boolean agreement;
+    private LocalDate dateOfCreation;
+
 }

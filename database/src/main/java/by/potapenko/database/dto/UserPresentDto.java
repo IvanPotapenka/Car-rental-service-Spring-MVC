@@ -13,5 +13,7 @@ public class UserPresentDto {
     private String phone;
     private String address;
     private UserRole role;
+    private DocumentDto documentDto;
     private LocalDate dateOfBirthday;
+    private LocalDate dateOfCreation;
 }

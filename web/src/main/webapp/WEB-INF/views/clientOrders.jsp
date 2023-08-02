@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.time.LocalDateTime" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,6 +32,11 @@
             padding: 14px;
             border: 1px solid gray;
         }
+        a.disabled {
+            pointer-events: none;
+            cursor: default;
+        }
+
         box {
             display: flex;
             flex-direction: column;
@@ -99,28 +105,67 @@
                 <th>Client</th>
                 <th>Rental date</th>
                 <th>Return date</th>
-                <th>Rental days</th>
-                <th>Price</th>
-                <th>Creator</th>
                 <th>Date of created</th>
+                <th>Rental days</th>
+                <th>Price for day, $</th>
+                <th>Discount</th>
+                <th>Price, $</th>
                 <th>Status</th>
-                <th>Contract</th>
+                <th>State</th>
+                <th>Cancel</th>
             </tr>
             <c:forEach var="rental" items="${rentals}">
                 <tr>
                     <td>${rental.id}</td>
                     <td>${rental.carDto.brand} ${rental.carDto.model}</td>
                     <td>${rental.userDto.fullName} </td>
-                    <td>${rental.rentalDate}</td>
-                    <td>${rental.returnDate}</td>
-                    <td>${rental.rentalDays}</td>
-                    <td>${rental.price}</td>
-                    <td>${rental.creator}</td>
+                    <td>${rental.rentalDate} at
+                        12.00 PM </td>
+                    <td>${rental.returnDate} at
+                        12.00 PM</td>
                     <td>${rental.dateOfCreation}</td>
-                    <td class="w3-text-red">${rental.status}</td>
+                    <td>${rental.rentalDays}</td>
+                    <td style="font-size: 12px"><span style="color: crimson" aria-flowto="">${rental.carDto.price}</span></td>
+                    <c:if test="${rental.rentalDays <= 3}">
+                        <td style="font-size: 12px"> <span style="color: crimson" aria-flowto="">0 %</span></td>
+                    </c:if>
+                    <c:if test="${rental.rentalDays >= 4 && rental.rentalDays <= 7}">
+                        <td style="font-size: 12px"> <span style="color: crimson" aria-flowto="">10 %</span></td>
+                    </c:if>
+                    <c:if test="${rental.rentalDays >= 8 && rental.rentalDays <= 15}">
+                        <td style="font-size: 12px"> <span style="color: crimson" aria-flowto="">25 %</span></td>
+                    </c:if>
+                    <c:if test="${rental.rentalDays > 16}">
+                        <td style="font-size: 12px"><span style="color: crimson" aria-flowto="">35 %</span></td>
+                    </c:if>
 
-                    <td><a href="${pageContext.request.contextPath}#"
-                           class="w3-text-blue">Download</a></td>
+                    <td style="font-size: 12px"><span style="color: crimson" aria-flowto="">${rental.price}</span></td>
+
+                    <td>
+                        <c:if test="${rental.status=='CHECK'}">
+                            <p style="color: red"> ${rental.status}</p>
+                        </c:if>
+                        <c:if test="${rental.status=='PROCESSING'}">
+                            <p style="color: yellow"> ${rental.status}</p>
+                        </c:if>
+                        <c:if test="${rental.status=='REFUSED'}">
+                            <p style="color: red"> ${rental.status}</p>
+                        </c:if>
+                        <c:if test="${rental.status=='CLOSED'}">
+                            <p style="color: white"> ${rental.status}</p>
+                        </c:if>
+                        <c:if test="${rental.status=='APPROVE'}">
+                            <p style="color: greenyellow"> ${rental.status}</p>
+                        </c:if>
+                    </td>
+                    <td>${rental.state}</td>
+                    <td>
+
+                        <a  href="/account/orders/order/${rental.id}"
+                        <c:if test="${rental.state =='REFUSED'}"> class= "disabled" style="color: #8f9296"  </c:if>
+                                >CANCEL ORDER</a>
+
+                    </td>
                 </tr>
             </c:forEach>
         </table>

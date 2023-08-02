@@ -54,7 +54,7 @@
 <%@include file="headerAdmin.jsp" %>
 <div><a href="/admin">Home </a>/ create new user</div>
 <box>
-    <form method="post" class="w3-card-4 w3-blue-grey w3-round-large w3-padding" style="width: 50%">
+    <form method="post" class="w3-card-4 w3-blue-grey w3-round-large w3-padding" style="width: 30%">
         <flex>
 
             <c:if test="${create_user == null}">
@@ -86,6 +86,24 @@
                        id="phone"
                        required/><br>
 
+                <label for="date_of_birthday_id">Date of birthday</label>
+                <input class="w3-round-large"
+                       type="date"
+                       min="1950-01-01"
+                       max="2003-01-01"
+                       name="dateOfBirthday"
+                       id="date_of_birthday_id"
+                       required/><br>
+
+                <label for="address_id">Address</label>
+                <input class="w3-round-large"
+                       maxlength="100"
+                       type="text"
+                       placeholder="Enter city,street,No."
+                       name="address"
+                       id="address_id"
+                /><br>
+
                 <label for="pwd">Password</label>
                 <input class="w3-round-large"
                        maxlength="20"
@@ -95,14 +113,39 @@
                        id="pwd"
                        required/></p><br>
 
+                <label for="passport_id">Passport No.</label>
+                    <input class="w3-round-large"
+                           width="350px"
+                           maxlength="9"
+                           type="text"
+                           name="passport"
+                           id="passport_id"
+                           required/><br>
+
+                <label for="driver_id">Driver licence</label>
+                    <input class="w3-round-large"
+                           width="350 px"
+                           maxlength="9"
+                           type="text"
+                           name="driverLicense"
+                           id="driver_id"
+                           required/><br>
+
                 <label for="role"></label>
                     <select class="w3-round-large"
                             id="role"
                             name="role"
                             required>
+                        <sec:authorize access="hasAnyAuthority('ADMIN','MANAGER')">
                         <option value="USER">USER</option>
+                        </sec:authorize>
+                        <sec:authorize access="hasAuthority('ADMIN')">
                         <option value="MANAGER">MANAGER</option>
+                        </sec:authorize>
+
                     </select><br>
+                <label> <input class="w3-round-large"  name="agreement" type="checkbox" style="height: 15px; width: 15px;" checked required/> I agree to the processing of personal
+                    data</label><br>
                 <button class="w3-btn w3-white w3-round-large" type="submit">Create</button>
                 </br>
                 <p style="font-size: 16px"><a href="${pageContext.request.contextPath}/admin/users">Back</a></p>

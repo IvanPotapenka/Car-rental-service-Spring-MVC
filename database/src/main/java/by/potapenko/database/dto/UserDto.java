@@ -12,9 +12,9 @@ public class UserDto {
     private String fullName;
     private String email;
     private String phone;
-    private String passport;
-    private String driverLicense;
+    private DocumentDto documentDto;
     private LocalDate dateOfBirthday;
+    private String address;
     private UserRole role;
     private LocalDate dateOfCreation;
 }

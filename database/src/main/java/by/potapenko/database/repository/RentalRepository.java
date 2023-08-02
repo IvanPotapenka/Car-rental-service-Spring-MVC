@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface RentalRepository extends JpaRepository<RentalEntity, Long> {
+public interface RentalRepository extends JpaRepository<RentalEntity, Long>, RentalRepositoryExtension {
 
     List<RentalEntity> findAllByUserId(Long id);
 

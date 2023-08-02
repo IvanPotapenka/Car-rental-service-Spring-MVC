@@ -1,6 +1,6 @@
 package by.potapenko.web.controllers;
 
-import by.potapenko.database.dto.UserDto;
+import by.potapenko.database.dto.UserPresentDto;
 import by.potapenko.service.UserService;
 import by.potapenko.web.util.PathUtil;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ public class ManagerController {
 
     @GetMapping(PathUtil.MANAGERS)
     public String getUsersPage(Model model) {
-        List<UserDto> managers = userService.getByRoleManager();
+        List<UserPresentDto> managers = userService.getByRoleManager();
         model.addAttribute("managers", managers);
         return MANAGERS;
     }

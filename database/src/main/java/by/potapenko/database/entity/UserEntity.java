@@ -44,6 +44,12 @@ public class UserEntity extends CreatableEntity<Long> {
     @Column(name = "passwords", length = 256, nullable = false)
     private String password;
 
+    @Column(name = "reset_password_token", length = 256)
+    private String resetPasswordToken;
+
+    @Column(name = "agreement", length = 5, nullable = false)
+    private boolean agreement;
+
     @Column(name = "date_of_birthday")
     private LocalDate dateOfBirthday;
 

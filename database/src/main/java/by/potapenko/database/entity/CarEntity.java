@@ -1,10 +1,15 @@
 package by.potapenko.database.entity;
 
+import by.potapenko.database.entity.enam.CarState;
+import by.potapenko.database.entity.enam.CarStatus;
+import by.potapenko.database.entity.enam.CarType;
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -40,6 +45,10 @@ public class CarEntity implements BaseIdEntity<Long> {
     @Column(name = "model", length = 20, nullable = false)
     private String model;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type_car", length = 20, nullable = false)
+    private CarType type;
+
     @Column(name = "image", length = 256)
     private String image;
 
@@ -51,6 +60,16 @@ public class CarEntity implements BaseIdEntity<Long> {
 
     @Column(name = "fuel_consumption")
     private double fuelConsumption;
+
+    @Builder.Default
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", length = 10, nullable = false)
+    private CarStatus status = CarStatus.FREE;
+
+    @Builder.Default
+    @Column(name = "state_check", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private CarState stateCheck = CarState.READY;
 
     @Builder.Default
     @OneToMany(mappedBy = "car")

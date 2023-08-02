@@ -51,6 +51,15 @@
             padding-top: 80px;
             padding-left: 20px;
         }
+
+
+        div1 {
+            padding-left: 80%;
+        }
+
+        div2 {
+            width: 100%;
+        }
         flex {
             display: flex;
             flex-direction: column;
@@ -68,7 +77,7 @@
 </head>
 <body>
 <%@include file="header.jsp" %>
-<div><a href="/admin">Home </a>/ profile</div>
+<div><a href="/">Home </a>/ profile</div>
 <nav1>
     <flex class="w3-btn w3-border w3-round-large w3-padding" style="width: 100%"
           onclick="location.href='/account/profile'">
@@ -90,13 +99,32 @@
 
 </nav1>
 <box class="w3-container ">
-    <div class="w3-card-4 w3-round-large w3-padding" style="width: 50%"><br>
-        <h4> ${uzer.role}:</h4><h4 class="w3-text-blue"> ${uzer.fullName} </h4><br>
-        <h6>Email:</h6><h6 class="w3-text-blue"> ${uzer. email}</h6><br>
-        <h6>Phone: </h6> <h6 class="w3-text-blue"> ${uzer.phone}</h6><br>
-        <h6>Address: </h6> <h6 class="w3-text-blue"> ${uzer.address}</h6><br>
-    </div> <br><br>
-</box><br>
+
+    <div class="w3-card-4 w3-round-large w3-padding" style="width: 40%"><br>
+        <div style="float: left; width: 300px; height: 300px; margin-top: 10px; padding-top: 10px">
+
+            <h4> ${uzer.role}:</h4><h4 class="w3-text-blue">${uzer.fullName}</h4>
+            <h6>Email:</h6><h6 class="w3-text-blue">${uzer. email}
+
+        </h6>
+            <h6>Phone: </h6><h6 class="w3-text-blue">${uzer.phone}</h6>
+            <h6>Address: </h6> <h6 class="w3-text-blue">${uzer.address}</h6><br>
+
+        </div>
+        <div style="float: right; width: 250px; height: 250px;margin-bottom: 20%">
+            <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar"
+                 style="width:100%;opacity:0.85">
+        </div>
+        <div2>
+            <div1>
+                <p class="w3-btn w3-round-large w3-light-gray"><a
+                        href="${pageContext.request.contextPath}/account/profile/edit/${uzer.id}">Edit profile</a></p>
+            </div1>
+        </div2>
+    </div>
+    <br><br>
+
+</box>
 <%@include file="footer.jsp" %>
 </body>
 </html>

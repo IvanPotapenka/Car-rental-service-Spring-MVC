@@ -27,7 +27,7 @@ import static org.modelmapper.config.Configuration.AccessLevel.PRIVATE;
 @Configuration
 @ComponentScan("by.potapenko.database")
 @EnableTransactionManagement
-@PropertySource(value = "classpath:datasource.properties")
+@PropertySource(value = "classpath:application.properties")
 @PropertySource(value = "classpath:hibernate.properties")
 @EnableJpaRepositories(basePackages = "by.potapenko.database.repository")
 public class DataBaseConfig {

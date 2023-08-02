@@ -1,6 +1,6 @@
 package by.potapenko.database.dto;
 
-import by.potapenko.database.entity.enam.Status;
+import by.potapenko.database.entity.enam.OrderStatus;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -14,6 +14,6 @@ public class RentalCreationDto {
     private double price;
     private CarDto carDto;
     private UserDto userDto;
-    private Status status;
+    private OrderStatus status;
     private String creator;
 }

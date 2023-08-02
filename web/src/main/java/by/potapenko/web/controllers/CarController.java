@@ -29,7 +29,7 @@ public class CarController {
 
     @GetMapping
     public String getCarsPage(Model model) {
-        List<CarDto> cars = carService.getAll();
+        List<CarDto> cars = carService.getAllSortByPriceAsc();
         if (cars.isEmpty()) {
             model.addAttribute("find_car_error", true);
             return CAR_ADMIN;

@@ -6,6 +6,7 @@ import by.potapenko.database.entity.CarEntity;
 import by.potapenko.database.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,8 +36,15 @@ public class CarService {
         return Optional.empty();
     }
     @Transactional(readOnly = true)
-    public List<CarDto> getAll() {
-        return carRepository.findAll()
+    public List<CarDto> getAllSortByPriceAsc() {
+        return carRepository.findAll(Sort.by(Sort.Direction.ASC, "price"))
+                .stream()
+                .map(this::convertToCarDto)
+                .toList();
+    }
+    @Transactional(readOnly = true)
+    public List<CarDto> getAllSortByPriceDesc() {
+        return carRepository.findAll(Sort.by(Sort.Direction.DESC, "price"))
                 .stream()
                 .map(this::convertToCarDto)
                 .toList();

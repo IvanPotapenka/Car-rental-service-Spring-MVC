@@ -43,13 +43,15 @@
         <flex>
             <p style="font-size: 16px">
             <h5>Recover password</h5><br>
-            <c:if test="${param.email == true}">
+            <c:if test="${message_send == true}">
                 <p class="w3-text-green"> Your password has been sent to your email!</p></br>
+                <p class="w3-text-green"> Check your email!</p></br>
                 <p><a href="${pageContext.request.contextPath}/login">Sing in</a></p></br>
 
             </c:if><br>
+
             <label for="email"></label>
-            <c:if test="${param.email == false}">
+            <c:if test="${message_send == false}">
                 <p class="w3-text-red"> There is no user with this address or <a href="/recover" class="w3-text-blue">try
                     again</a></p>
                 <p><a href="${pageContext.request.contextPath}/registration">Registration</a></p>

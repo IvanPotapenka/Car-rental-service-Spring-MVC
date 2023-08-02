@@ -1,5 +1,8 @@
 package by.potapenko.database.dto;
 
+import by.potapenko.database.entity.enam.CarState;
+import by.potapenko.database.entity.enam.CarStatus;
+import by.potapenko.database.entity.enam.CarType;
 import by.potapenko.database.entity.enam.ColorCar;
 import by.potapenko.database.entity.enam.FuelType;
 import by.potapenko.database.entity.enam.TransmissionType;
@@ -20,8 +23,11 @@ public class CarDto {
     private double engineCapacity;
     private TransmissionType transmission;
     private int horsePower;
+    private CarType type;
     private FuelType fuelType;
     private String vinCode;
     private String number;
+    private CarStatus status;
+    private CarState stateCheck;
     private double fuelConsumption;
 }

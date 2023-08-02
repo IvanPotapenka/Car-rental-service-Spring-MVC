@@ -66,16 +66,16 @@
 </head>
 <body>
 <%@include file="headerAdmin.jsp" %>
-<div><a href="/admin">Home </a>/ update new client</div>
+<div><a href="/admin">Home </a>/ update new user</div>
 <box>
   <form method="post" class="w3-card-4 w3-blue-grey w3-round-large w3-padding" style="width: 90%">
     <flex>
-      <h1>${client.firstName} ${client.lastName}</h1><br>
-      <c:if test="${update_client == true}">
-        <p style="font-size: 20px" class="w3-text-green"> Client save successfully!</p>
-        <p style="font-size: 16px"><a href="/admin/clients/client/${client.id}">Back</a></p>
+      <h1>${user.firstName} ${user.lastName}</h1><br>
+      <c:if test="${update_user == true}">
+        <p style="font-size: 20px" class="w3-text-green"> user save successfully!</p>
+        <p style="font-size: 16px"><a href="/admin/users/user/${user.id}">Back</a></p>
       </c:if><br>
-      <c:if test="${update_client == null}">
+      <c:if test="${update_user == null}">
         <table style="font-size: 10px">
           <tr>
             <th>First name</th>
@@ -93,7 +93,7 @@
                    placeholder="Enter first name"
                    name="firstName"
                    id="first_name_id"
-                   value="${client.firstName}"
+                   value="${user.firstName}"
                    required/><br></td>
 
           <td><label for="last_name_id"></label>
@@ -103,7 +103,7 @@
                    placeholder="Enter last name"
                    name="lastName"
                    id="last_name_id"
-                   value="${client.lastName}"
+                   value="${user.lastName}"
                    required/><br></td>
 
 
@@ -114,7 +114,7 @@
                    placeholder="Enter date of birthday"
                    name="dateOfBirthday"
                    id="date_of_birthday_id"
-                   value="${client.dateOfBirthday}"
+                   value="${user.dateOfBirthday}"
                    required/><br></td>
 
           <td><label for="phone_id"></label>
@@ -124,7 +124,7 @@
                    placeholder="Enter your phone"
                    name="phone"
                    id="phone_id"
-                   value="${client.phone}"
+                   value="${user.phone}"
             /><br></td>
 
           <td><label for="address_id"></label>
@@ -134,18 +134,18 @@
                    placeholder="Enter address"
                    name="address"
                    id="address_id"
-                   value="${client.address}"
+                   value="${user.address}"
             /><br></td>
         </table>
         <br>
         <button class="w3-btn w3-white w3-round-large" type="submit">Save</button>
         </br>
 
-        <p style="font-size: 12px"><a href="${pageContext.request.contextPath}/admin/clients">Back</a></p>
+        <p style="font-size: 12px"><a href="${pageContext.request.contextPath}/admin/users">Back</a></p>
       </c:if>
       <c:if test="${update_cleint == false}">
-        <p class="w3-text-red"> Client wasn't saved!</p>
-        <a href="/admin/clients/client" class="w3-text-blue">Try again</a></p>
+        <p class="w3-text-red"> user wasn't saved!</p>
+        <a href="/admin/users/user" class="w3-text-blue">Try again</a></p>
       </c:if><br>
     </flex>
   </form>

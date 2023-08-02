@@ -1,7 +1,6 @@
 package by.potapenko.database.repository;
 
 import by.potapenko.database.dto.CarFilter;
-import by.potapenko.database.entity.BodyCar_;
 import by.potapenko.database.entity.CarEntity;
 import by.potapenko.database.entity.CarEntity_;
 import by.potapenko.database.entity.EngineCar_;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Repository
 @RequiredArgsConstructor
@@ -38,14 +36,11 @@ public class CarRepositoryExtensionImpl implements CarRepositoryExtension {
 
     private static List<Predicate> collectPredicates(CarFilter filter, CriteriaBuilder builder, Root<CarEntity> carRoot) {
         List<Predicate> predicates = new ArrayList<>();
-        if (!Objects.equals(filter.getBrand(), "")) {
+        if (filter.getBrand() != null) {
             predicates.add(builder.equal(carRoot.get(CarEntity_.BRAND), filter.getBrand()));
         }
-        if (!Objects.equals(filter.getModel(), "")) {
-            predicates.add(builder.equal(carRoot.get(CarEntity_.MODEL), filter.getModel()));
-        }
-        if (filter.getColor() != null) {
-            predicates.add(builder.equal(carRoot.get(CarEntity_.BODY).get(BodyCar_.COLOR), filter.getColor()));
+        if (filter.getType() != null) {
+            predicates.add(builder.equal(carRoot.get(CarEntity_.TYPE), filter.getType()));
         }
         if (filter.getFuelType() != null) {
             predicates.add(builder.equal(carRoot.get(CarEntity_.ENGINE).get(EngineCar_.FUEL_TYPE), filter.getFuelType()));

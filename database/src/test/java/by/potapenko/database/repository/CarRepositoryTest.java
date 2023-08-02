@@ -5,6 +5,9 @@ import by.potapenko.database.dto.CarFilter;
 import by.potapenko.database.entity.BodyCar;
 import by.potapenko.database.entity.CarEntity;
 import by.potapenko.database.entity.EngineCar;
+import by.potapenko.database.entity.enam.CarState;
+import by.potapenko.database.entity.enam.CarStatus;
+import by.potapenko.database.entity.enam.CarType;
 import by.potapenko.database.entity.enam.ColorCar;
 import by.potapenko.database.entity.enam.FuelType;
 import by.potapenko.database.entity.enam.TransmissionType;
@@ -63,6 +66,10 @@ class CarRepositoryTest {
                 .model("C5")
                 .year(2022)
                 .price(105)
+                .status(CarStatus.FREE)
+                .type(CarType.ECONOMIC)
+                .stateCheck(CarState.READY)
+                .image("img")
                 .body(BodyCar.builder()
                         .color(ColorCar.WHITE)
                         .doorQuantity(2)
@@ -109,10 +116,9 @@ class CarRepositoryTest {
 
     @Test
     @Order(6)
-    void whenFindAllByFilterContainsOnlyBrandsAndModelCarsInvoked_ThenAllTheFilteredByBrandsCarsAreReturned() {
+    void whenFindAllByFilterContainsOnlyBrandCarsInvoked_ThenAllTheFilteredByBrandsCarsAreReturned() {
         CarFilter filter = CarFilter.builder()
                 .brand("Audy")
-                .model("A8")
                 .build();
         String[] actual = carRepository.findByFilter(filter)
                 .stream()

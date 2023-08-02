@@ -80,6 +80,8 @@
                     <th>Full name</th>
                     <th>Email</th>
                     <th>Phone</th>
+                    <th>Date of birthday</th>
+                    <th>Address</th>
                     <th>Date of creation</th>
                     <th>Role</th>
                     <th>Edit</th>
@@ -90,9 +92,11 @@
                         <td>${user.fullName}</td>
                         <td>${user.email}</td>
                         <td>${user.phone}</td>
+                        <td>${user.dateOfBirthday}</td>
+                        <td>${user.address}</td>
                         <td>${user.dateOfCreation}</td>
                         <td>${user.role}</td>
-                        <td><a href="${pageContext.request.contextPath}/admin/managers/manager/${user.id}"
+                        <td><a href="${pageContext.request.contextPath}/admin/users/user/${user.id}"
                                class="w3-text-blue">EDIT</a></td>
                     </tr>
                 </c:forEach>

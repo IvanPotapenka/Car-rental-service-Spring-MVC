@@ -29,7 +29,7 @@
             left: 0;
             top: 100%;
             z-index: 5;
-            width: 1px;
+            width: 120px;
             opacity: 0;
             transform: scaleY(0);
             transform-origin: 0 0;
@@ -50,9 +50,9 @@
 <body>
 <sec:authorize access="hasAnyAuthority('ADMIN', 'MANAGER')">
     <nav>
-        <div class="w3-container w3-blue-grey">
-            <button class="w3-text-blue" style="text-shadow:1px 1px 0 #444" onclick="location.href='/admin'">
-                <h2>Car rental service</h2></button>
+        <div class="w3-container w3-blue-grey";  style="height: 65px;">
+            <p style="font-size: 24px;color: white;position: absolute; font-weight: bold">Car rental service</p>
+
 
             <sec:authorize access="!isAuthenticated()">
                 <button class="w3-btn  w3-round-large w3-right  " style="text-shadow:1px 1px 0 #444"
@@ -64,19 +64,23 @@
                         <sec:authentication var="user" property="principal" />
 
                         <ul class="topmenu">
-                            <li><button class="w3-btn  w3-round-large w3-right" style="text-shadow:1px 1px 0 #444"onclick="location.href='/account/profile'">${user.username}</button>
+                            <li><button class="w3-btn  w3-round-large w3-right" style="text-shadow:1px 1px 0 #444"onclick="location.href='/admin/profile'">${user.username}</button>
                                 <ul class="submenu"><br>
                                     <li class="w3-padding"><a href="/admin/profile">Profile</a></li><br>
-<%--                                    <li class="w3-padding"><a href="/account/orders">Orders</a></li><br>--%>
-<%--                                    <li class="w3-padding"><a href="#">Message</a></li>--%>
+                                    <li class="w3-padding"><a href="/admin/orders">Orders</a></li><br>
+                                    <li class="w3-padding"><a href="#">Message</a></li>
                                     <li class="w3-padding"><a href="/logout">Sing out</a></li>
                                 </ul>
                             </li>
                         </ul>
                 </sec:authorize>
             </sec:authorize>
+
             <button class="w3-btn w3-front-arial w3-round-large w3-right " style="text-shadow:1px 1px 0 #444"
                     onclick="location.href='/admin/rentals'">Rentals
+            </button>
+            <button class="w3-btn  w3-round-large w3-right" style="text-shadow:1px 1px 0 #444"
+                    onclick="location.href='/admin/requests'">Requests
             </button>
             <button class="w3-btn w3-front-arial w3-round-large w3-right " style="text-shadow:1px 1px 0 #444"
                     onclick="location.href='/admin/users'">Users
@@ -88,6 +92,7 @@
             <button class="w3-btn  w3-round-large w3-right" style="text-shadow:1px 1px 0 #444"
                     onclick="location.href='/admin/cars'">Cars
             </button>
+
         </div>
     </nav>
 </sec:authorize>

@@ -1,8 +1,8 @@
 package by.potapenko.database.dto;
 
-import by.potapenko.database.entity.enam.ColorCar;
 import by.potapenko.database.entity.enam.FuelType;
 import by.potapenko.database.entity.enam.TransmissionType;
+import by.potapenko.database.entity.enam.CarType;
 import lombok.Builder;
 import lombok.Data;
 
@@ -10,11 +10,9 @@ import lombok.Data;
 @Builder
 public class CarFilter {
     private String brand;
-    private String model;
-    private ColorCar color;
+    private CarType type;
     private FuelType fuelType;
     private TransmissionType transmission;
-
     private Integer limit;
     private Integer page;
 

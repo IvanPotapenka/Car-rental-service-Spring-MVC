@@ -79,6 +79,7 @@
                         <th>Model</th>
                         <th>Year of release</th>
                         <th>Color</th>
+                        <th>Type</th>
                         <th>Fuel type</th>
                         <th>Engine, l</th>
                         <th>Horse power, h.p</th>
@@ -97,6 +98,12 @@
                             <option value="Ford">Ford</option>
                             <option value="Renault">Renault</option>
                             <option value="Hyundai">Hyundai</option>
+                            <option value="Volkswagen">Volkswagen</option>
+                            <option value="Lexus">Lexus</option>
+                            <option value="Geely">Geely</option>
+                            <option value="Mercedes">Mercedes</option>
+                            <option value="Kia">Kia</option>
+                            <option value="Skoda">Skoda</option>
                         </select><br></td>
 
                     <td><label for="model"></label>
@@ -136,6 +143,25 @@
                             <option value="YELLOW">Yellow</option>
                         </select><br></td>
 
+                    <td><label for="type_id"></label>
+                        <select class="w3-round-large"
+                                id="type_id"
+                                name="type"
+                                required>
+                            <option value="">--Type car--</option>
+                            <option value="ECONOMIC">Economic</option>
+                            <option value="AVERAGE">Average</option>
+                            <option value="COMFORT">Comfort</option>
+                            <option value="BUSINESS">Business</option>
+                            <option value="PREMIUM">Premium</option>
+                            <option value="CABRIOLET">Cabriolet</option>
+                            <option value="JEEP">Jeep</option>
+                            <option value="MINIVAN">Minivan</option>
+                            <option value="ELECTRIC">Electric</option>
+                            <option value="LUKS">Luks</option>
+                        </select><br></td>
+
+
                     <td><label for="fuel_id"></label>
                         <select class="w3-round-large"
                                 id="fuel_id"
@@ -145,7 +171,6 @@
                             <option value="GASOLINE">Gasoline</option>
                             <option value="GAS">Gas</option>
                             <option value="DIESEL">Diesel</option>
-<%--                            <option value="ELECTRIC">Electric</option>--%>
                         </select><br></td>
 
                     <td><label for="engine_id"></label>
@@ -186,6 +211,7 @@
                         <th>Places</th>
                         <th>Doors</th>
                         <th>Trunk,l</th>
+                        <th>Image</th>
                         <th>VIN code</th>
                         <th>Car number</th>
                         <th>Price,$</th>
@@ -229,6 +255,14 @@
                                placeholder="Enter trunk volume"
                                name="trunkVolume"
                                id="trunk_id"
+                               required/><br></td>
+
+                    <td><label for="image_id"></label>
+                        <input class="w3-round-large"
+                               type="text"
+                               placeholder="Enter ref image"
+                               name="image"
+                               id="image_id"
                                required/><br></td>
 
                     <td><label for="vinCode_id"></label>

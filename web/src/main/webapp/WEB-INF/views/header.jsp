@@ -30,7 +30,7 @@
             left: 0;
             top: 100%;
             z-index: 5;
-            width: 1px;
+            width: 100px;
             opacity: 0;
             transform: scaleY(0);
             transform-origin: 0 0;
@@ -50,10 +50,10 @@
 </head>
 <body>
 <nav>
-    <div class="w3-container w3-blue-grey">
-        <button class="w3-text-blue" style="text-shadow:1px 1px 0 #444" onclick="location.href='/'">
-            <h2>Car-rental-service</h2></button>
-<sec:authorize access="!isAuthenticated()">
+    <div class="w3-container w3-blue-grey";  style="height: 65px;">
+        <p style="font-size: 24px;color: white;position: absolute; font-weight: bold">Car rental service</p>
+
+        <sec:authorize access="!isAuthenticated()">
             <button class="w3-btn  w3-round-large w3-right  " style="text-shadow:1px 1px 0 #444"
                     onclick="location.href='/login'">Sing in
             </button>
